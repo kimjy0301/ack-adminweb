@@ -6,5 +6,5 @@ ACK EMRIF 팀 개발 REPO입니다.
 ### `ACK`
 
 ACK <br />
-Open [https://www.ack.co.kr/](ACK)) to view it in the browser.
+Open [https://www.ack.co.kr/]
 
