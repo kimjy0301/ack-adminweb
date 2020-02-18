@@ -1,7 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './styles/tailwind.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "./styles/tailwind.css";
+import { createStore, applyMiddleware } from "redux";
+import rootReducer, { rootSaga } from "./modules";
+import { Provider } from "react-redux";
+import createSagaMiddleware from "redux-saga";
+import { composeWithDevTools } from "redux-devtools-extension";
 
+const sagaMiddleware = createSagaMiddleware();
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
+);
+
+sagaMiddleware.run(rootSaga);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);

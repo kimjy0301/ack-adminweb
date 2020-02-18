@@ -1,17 +1,41 @@
-import React from 'react';
+import React from "react";
+import Main from "./components/Main";
+import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
+import Login from "./components/Login";
+import PrivateRoute from "./lib/PrivateRoute";
+import Private from "./components/Private";
 
 const App = () => {
   return (
-    <div className="flex items-center justify-center h-screen">
+    <>
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/">Main</Link>
+            </li>
+            <li>
+              <Link to="/private">private</Link>
+            </li>
+          </ul>
 
-      <div className="bg-white w-32 h-64">
+          <hr />
 
-
-        <button className="w-32 h-16 bg-white hover:bg-gray-400 duration-300 ease-linear focus:outline-none transition-colors shadow">Click</button>
-      </div>
-      
-    </div>
+          <Switch>
+            <Route exact path="/">
+              <Main></Main>
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <PrivateRoute path="/private">
+              <Private />
+            </PrivateRoute>
+          </Switch>
+        </div>
+      </Router>
+    </>
   );
-}
+};
 
 export default App;
