@@ -1,10 +1,20 @@
-import { createAction } from "typesafe-actions";
+import { createAsyncAction, createAction } from "typesafe-actions";
+import { AxiosError } from "axios";
+import { UserState } from "./types";
+import { typeLoginRequest } from "../../api/loginAPI";
 
 // 액션 type 선언
 export const LOGIN = "user/LOGIN";
+export const LOGOUT = "user/LOGOUT";
+export const LOGIN_SUCCESS = "user/SUCCESS";
+export const LOGIN_ERROR = "user/ERROR";
 
 // 액션 생성함수를 선언합니다
-export const login = createAction(LOGIN)();
+export const logout = createAction(LOGOUT)();
 
-// 액션 객체 타입 준비
-export const actions = { login }; // 모든 액션 생성함수들을 actions 객체에 넣습니다
+// 액션 생성함수를 선언합니다
+export const getLoginAsync = createAsyncAction(
+  LOGIN,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR
+)<typeLoginRequest, UserState, AxiosError>();

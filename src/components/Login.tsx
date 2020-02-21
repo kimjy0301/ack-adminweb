@@ -1,34 +1,78 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../modules";
-import { login } from "../modules/user";
+import { getLoginAsync } from "../modules/user";
 import { useHistory, useLocation } from "react-router-dom";
+import { BeatLoader } from "react-spinners";
+
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   const dispatch = useDispatch();
-
-  const isLogin = useSelector((state: RootState) => state.user.isLogin);
-
+  const { isLogin, isLoading, error, errorMsg } = useSelector(
+    (state: RootState) => state.user
+  );
   const history = useHistory();
   const location = useLocation();
-
   const locationstate: any = location.state || { from: { pathname: "/" } };
 
-  const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(login());
-    history.replace(locationstate.from);
+    dispatch(getLoginAsync.request({ password, username }));
   };
+  const onChangeUsername = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.target.value);
+  };
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  useEffect(() => {
+    if (isLogin) {
+      history.replace(locationstate.from);
+    }
+  }, [isLogin, history, locationstate.from]);
 
   return (
     <>
-      <div className="flex items-center justify-center h-screen">
-        <button
-          onClick={onClick}
-          className="w-32 h-16 bg-white hover:bg-gray-400 duration-300 ease-linear focus:outline-none transition-colors shadow"
-        >
-          {isLogin ? "Logout" : "Login"}
-        </button>
+      <div className="flex items-center justify-center h-screen -mt-16">
+        {isLoading ? (
+          <BeatLoader loading={isLoading} color={"#38b2ac"}></BeatLoader>
+        ) : (
+          <form
+            className="flex flex-col items-center bg-white p-10 rounded shadow-lg"
+            onSubmit={onSubmit}
+          >
+            <input
+              className="my-3 border shadow-inner p-3 focus:outline-none focus:border-teal-400"
+              type="text"
+              placeholder="ID"
+              value={username}
+              onChange={onChangeUsername}
+            ></input>
+            <input
+              className="my-3 border shadow-inner p-3 focus:outline-none focus:border-teal-400"
+              type="password"
+              placeholder="PASSWORD"
+              value={password}
+              onChange={onChangePassword}
+            ></input>
+            {!errorMsg && (
+              <span className="text-red-600 text-xs font-medium">{error}</span>
+            )}
+            {errorMsg && (
+              <span className="text-red-600 text-xs font-medium">
+                {errorMsg}
+              </span>
+            )}
+
+            <button className="my-3 w-full h-16 bg-white hover:bg-teeal-300 duration-300 ease-linear focus:outline-none transition-colors shadow tracking-widest">
+              {isLogin ? "LOGOUT" : "LOGIN"}
+            </button>
+          </form>
+        )}
       </div>
     </>
   );
