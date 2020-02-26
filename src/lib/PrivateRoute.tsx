@@ -9,6 +9,7 @@ type RouteType = {
 };
 
 function PrivateRoute({ children, ...rest }: RouteType) {
+  //const isLogin = true;
   const isLogin = useSelector((state: RootState) => state.user.isLogin);
 
   return (

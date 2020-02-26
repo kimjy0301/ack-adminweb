@@ -1,7 +1,7 @@
 import { getLoginAsync, LOGIN } from "./actions";
-import { put, takeEvery, call } from "redux-saga/effects";
-import { UserState } from "./types";
+import { put, takeEvery, call, select } from "redux-saga/effects";
 import { typeLoginResponse, getUserToken } from "../../api/loginAPI";
+import { UserState } from "./types";
 
 function* loginSaga(action: ReturnType<typeof getLoginAsync.request>) {
   try {
@@ -20,12 +20,13 @@ function* loginSaga(action: ReturnType<typeof getLoginAsync.request>) {
     };
 
     yield put(getLoginAsync.success(state));
+    const selectState = yield select();
+    localStorage.setItem("jwt_token", selectState.user.token);
   } catch (e) {
     console.log(e);
     yield put(getLoginAsync.failure(e));
   }
 }
-
 export function* userSaga() {
   yield takeEvery(LOGIN, loginSaga);
 }

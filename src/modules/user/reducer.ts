@@ -12,7 +12,7 @@ const initialState: UserState = {
   errorMsg: undefined
 };
 
-const user = createReducer<UserState, LoginAction>(initialState, {
+const userReducer = createReducer<UserState, LoginAction>(initialState, {
   [LOGIN]: state => ({
     ...state,
     isLogin: false,
@@ -30,7 +30,9 @@ const user = createReducer<UserState, LoginAction>(initialState, {
     isLogin: true,
     isLoading: false,
     id: action.payload.id,
-    token: action.payload.token
+    token: action.payload.token,
+    error: "",
+    errorMsg: ""
   }),
   [LOGIN_ERROR]: (state, action) => ({
     ...state,
@@ -41,4 +43,4 @@ const user = createReducer<UserState, LoginAction>(initialState, {
   })
 });
 
-export default user;
+export default userReducer;

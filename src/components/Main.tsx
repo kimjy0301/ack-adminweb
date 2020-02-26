@@ -16,7 +16,7 @@ import {
   AreaChart,
   Area
 } from "recharts";
-
+import ServerStatus from "./status/ServerStatus";
 const Main = () => {
   const count = useSelector((state: RootState) => state.counter.count);
   const dispatch = useDispatch();
@@ -29,6 +29,7 @@ const Main = () => {
   const data = [
     { name: "1월", success: 400, fail: 531, amt: 3000 },
     { name: "2월", success: 501, fail: 135, amt: 3000 },
+    { name: "3월", success: 1034, fail: 501, amt: 3000 },
     { name: "4월", success: 135, fail: 745, amt: 3000 },
     { name: "5월", success: 1237, fail: 900, amt: 3000 },
     { name: "6월", success: 1025, fail: 800, amt: 3000 },
@@ -41,24 +42,13 @@ const Main = () => {
   ];
 
   const isLogin = useSelector((state: RootState) => state.user.isLogin);
+
   return (
     <>
       {isLogin ? (
         <div className="flex items-center justify-center py-5 h-full flex-col">
-          <div>
-            <button className="w-32 h-16 bg-white hover:bg-gray-400 duration-300 ease-linear focus:outline-none transition-colors shadow">
-              MainPage
-            </button>
-            <button className="w-32 h-16 bg-white hover:bg-gray-400 duration-300 ease-linear focus:outline-none transition-colors shadow">
-              {count}
-            </button>
-            <button
-              onClick={onClick}
-              className="w-32 h-16 bg-white hover:bg-gray-400 duration-300 ease-linear focus:outline-none transition-colors shadow"
-            >
-              Click
-            </button>
-          </div>
+          <ServerStatus></ServerStatus>
+
           <div className="bg-white p-3 rounded-md shadow-lg mt-10">
             <LineChart
               width={730}
@@ -135,6 +125,20 @@ const Main = () => {
                 fill="url(#colorPv)"
               />
             </AreaChart>
+          </div>
+          <div className="bg-white p-3 rounded-md shadow-lg mt-10">
+            <button className="w-32 h-16 bg-white hover:bg-gray-400 duration-300 ease-linear focus:outline-none transition-colors shadow">
+              MainPage
+            </button>
+            <button className="w-32 h-16 bg-white hover:bg-gray-400 duration-300 ease-linear focus:outline-none transition-colors shadow">
+              {count}
+            </button>
+            <button
+              onClick={onClick}
+              className="w-32 h-16 bg-white hover:bg-gray-400 duration-300 ease-linear focus:outline-none transition-colors shadow"
+            >
+              Click
+            </button>
           </div>
         </div>
       ) : (

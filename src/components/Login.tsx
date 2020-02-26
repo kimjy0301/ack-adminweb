@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../modules";
 import { getLoginAsync } from "../modules/user";
@@ -16,6 +16,9 @@ const Login = () => {
   const history = useHistory();
   const location = useLocation();
   const locationstate: any = location.state || { from: { pathname: "/" } };
+
+  const idRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,6 +38,14 @@ const Login = () => {
     }
   }, [isLogin, history, locationstate.from]);
 
+  useEffect(() => {
+    idRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    idRef.current?.focus();
+  }, [isLoading]);
+
   return (
     <>
       <div className="flex items-center justify-center h-screen -mt-16">
@@ -51,6 +62,7 @@ const Login = () => {
               placeholder="ID"
               value={username}
               onChange={onChangeUsername}
+              ref={idRef}
             ></input>
             <input
               className="my-3 border shadow-inner p-3 focus:outline-none focus:border-teal-400"
@@ -58,6 +70,7 @@ const Login = () => {
               placeholder="PASSWORD"
               value={password}
               onChange={onChangePassword}
+              ref={passwordRef}
             ></input>
             {!errorMsg && (
               <span className="text-red-600 text-xs font-medium">{error}</span>
