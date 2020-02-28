@@ -68,16 +68,7 @@ const Equip = () => {
                       {array.length} 대
                     </div>
                   )}
-                  <InterfacePc
-                    key={interfacePc.id}
-                    dept={interfacePc.equip.lab.dept.name}
-                    lab={interfacePc.equip.lab.name}
-                    ip={interfacePc.ip}
-                    status={interfacePc.status}
-                    callnumber={interfacePc.equip.lab.call_number}
-                    error_count={interfacePc.error_count}
-                    id={interfacePc.id}
-                  ></InterfacePc>
+                  <InterfacePc interfacePcState={interfacePc}></InterfacePc>
                 </React.Fragment>
               ))
             : interfacePcList
@@ -94,16 +85,7 @@ const Equip = () => {
                         {array.length} 대
                       </div>
                     )}
-                    <InterfacePc
-                      key={interfacePc.id}
-                      dept={interfacePc.equip.lab.dept.name}
-                      lab={interfacePc.equip.lab.name}
-                      ip={interfacePc.ip}
-                      status={interfacePc.status}
-                      callnumber={interfacePc.equip.lab.call_number}
-                      error_count={interfacePc.error_count}
-                      id={interfacePc.id}
-                    ></InterfacePc>
+                    <InterfacePc interfacePcState={interfacePc}></InterfacePc>
                   </React.Fragment>
                 ))}
         </div>

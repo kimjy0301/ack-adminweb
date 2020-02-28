@@ -19,7 +19,7 @@ const InterfacePcModal = ({ onClickCancel, props }: InterfacePcModalType) => {
   const interfacePcState: InterfacePcState | undefined = useSelector(
     (state: RootState) =>
       state.interfacePcList.results.find(
-        (pcState: InterfacePcState) => pcState.id === props.id
+        (pcState: InterfacePcState) => pcState.id === props.interfacePcState.id
       ),
     shallowEqual
   );
@@ -58,7 +58,7 @@ const InterfacePcModal = ({ onClickCancel, props }: InterfacePcModalType) => {
         </span>{" "}
         <button
           onClick={onClickCancel}
-          className="broder rounded shadow-lg px-5 py-3 focus:outline-none mt-2 hover:shadow-xl"
+          className="rounded shadow-md px-5  border py-3 focus:outline-none mt-2 hover:shadow-lg"
         >
           닫기
         </button>
