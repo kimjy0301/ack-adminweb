@@ -8,6 +8,17 @@ import {
 import { RootState } from "../modules";
 import { BeatLoader } from "react-spinners";
 
+const filterCondition = (interfacePc: InterfacePcState, param: string) => {
+  if (
+    interfacePc.equip.lab.dept.name.match(param) ||
+    interfacePc.equip.lab.call_number.match(param) ||
+    interfacePc.ip.match(param) ||
+    interfacePc.equip.lab.name.match(param)
+  ) {
+    return true;
+  }
+};
+
 const Equip = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -17,7 +28,6 @@ const Equip = () => {
   const interfacePcList: InterfacePcState[] = useSelector(
     (state: RootState) => state.interfacePcList.results
   );
-
   const isLoading: boolean = useSelector(
     (state: RootState) => state.interfacePcList.isLoading
   );
@@ -34,63 +44,67 @@ const Equip = () => {
           <BeatLoader
             loading={isLoading}
             color={"#38b2ac"}
-            size={50}
+            size={40}
             key={9999}
           ></BeatLoader>
         </div>
       ) : (
         <div className="flex flex-wrap -mx-56 border bg-white mt-32 justify-center py-10 relative">
-          <div className="-my-16 text-3xl absolute left-4rem bg-white border px-3 text-gray-700 rounded shadow-lg">
+          <div className="-my-16 text-2xl absolute left-4rem bg-white border px-3 text-gray-700 rounded shadow-lg">
             전체PC리스트
           </div>
           <input
             type="text"
-            placeholder="검사실"
-            className="-my-16 text-xl absolute right-4rem bg-white border p-3 text-gray-700 rounded shadow-lg focus:border-teal-400 focus:outline-none"
+            placeholder="IP,부서,검사실,전화번호"
+            className="-my-16 w-64 text-xl absolute right-4rem bg-white border py-3 px-5 text-gray-700 rounded shadow-lg focus:border-teal-400 focus:outline-none"
             value={deptInput}
             onChange={onChangedeptInput}
           ></input>
-
           {deptInput === ""
             ? interfacePcList.map((interfacePc: InterfacePcState, i, array) => (
-                <>
+                <React.Fragment key={i}>
                   {i === 0 && (
-                    <div className="-my-16 text-3xl absolute bg-white border px-3 text-gray-700 rounded shadow-lg">
+                    <div className="-my-16 text-2xl absolute bg-white border px-3 text-gray-700 rounded shadow-lg">
                       {array.length} 대
                     </div>
                   )}
                   <InterfacePc
-                    key={i}
+                    key={interfacePc.id}
                     dept={interfacePc.equip.lab.dept.name}
                     lab={interfacePc.equip.lab.name}
                     ip={interfacePc.ip}
                     status={interfacePc.status}
                     callnumber={interfacePc.equip.lab.call_number}
                     error_count={interfacePc.error_count}
+                    id={interfacePc.id}
                   ></InterfacePc>
-                </>
+                </React.Fragment>
               ))
             : interfacePcList
                 .filter((interfacePc: InterfacePcState) =>
-                  interfacePc.equip.lab.dept.name.match(deptInput)
+                  filterCondition(interfacePc, deptInput)
                 )
                 .map((interfacePc: InterfacePcState, i, array) => (
-                  <>
+                  <React.Fragment key={i}>
                     {i === 0 && (
-                      <div className="-my-16 text-3xl absolute bg-white border px-3 text-gray-700 rounded shadow-lg">
+                      <div
+                        key={i}
+                        className="-my-16 text-2xl absolute bg-white border px-3 text-gray-700 rounded shadow-lg"
+                      >
                         {array.length} 대
                       </div>
                     )}
                     <InterfacePc
-                      key={i}
+                      key={interfacePc.id}
                       dept={interfacePc.equip.lab.dept.name}
                       lab={interfacePc.equip.lab.name}
                       ip={interfacePc.ip}
                       status={interfacePc.status}
                       callnumber={interfacePc.equip.lab.call_number}
                       error_count={interfacePc.error_count}
+                      id={interfacePc.id}
                     ></InterfacePc>
-                  </>
+                  </React.Fragment>
                 ))}
         </div>
       )}

@@ -1,5 +1,5 @@
 import { createReducer } from "typesafe-actions";
-import { LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT } from "./actions";
+import { LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SET_USER } from "./actions";
 import { UserState, LoginAction } from "./types";
 
 // 초기상태를 선언합니다.
@@ -40,7 +40,8 @@ const userReducer = createReducer<UserState, LoginAction>(initialState, {
     isLoading: false,
     error: action.payload.message,
     errorMsg: action.payload.response?.data
-  })
+  }),
+  [SET_USER]: (state, action) => (state = action.payload)
 });
 
 export default userReducer;

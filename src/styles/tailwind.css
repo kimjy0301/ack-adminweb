@@ -702,6 +702,18 @@ video {
   pointer-events: none;
 }
 
+.bg-modal {
+  background: rgba(0, 0, 0, 0.7);
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.half-size {
+  width: 50%;
+  height: 50%;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

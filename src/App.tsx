@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import Main from "./components/Main";
 import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
 import Login from "./components/Login";
@@ -6,16 +6,26 @@ import PrivateRoute from "./lib/PrivateRoute";
 import Equip from "./components/Equip";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./modules";
-import { logout } from "./modules/user";
+import { logout, UserState, setuser } from "./modules/user";
 import ScrollTop from "./lib/ScrollTop.jsx";
 
 const App = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    let userinfo: UserState;
+    const userinfoStr = localStorage.getItem("userinfo");
+    if (userinfoStr !== null) {
+      userinfo = JSON.parse(userinfoStr);
+      dispatch(setuser(userinfo));
+    }
+  }, [dispatch]);
+
   const { isLogin } = useSelector((state: RootState) => state.user);
+
   const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     dispatch(logout());
-    localStorage.setItem("jwt_token", "");
   };
 
   return (

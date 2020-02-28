@@ -48,10 +48,17 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center h-screen -mt-16">
-        {isLoading ? (
-          <BeatLoader loading={isLoading} color={"#38b2ac"}></BeatLoader>
-        ) : (
+      {isLoading ? (
+        <div className="flex justify-center items-center h-screen">
+          <BeatLoader
+            loading={isLoading}
+            color={"#38b2ac"}
+            size={40}
+            key={9999}
+          ></BeatLoader>
+        </div>
+      ) : (
+        <div className="flex items-center justify-center h-screen -mt-16">
           <form
             className="flex flex-col items-center bg-white p-10 rounded shadow-lg"
             onSubmit={onSubmit}
@@ -85,8 +92,8 @@ const Login = () => {
               {isLogin ? "LOGOUT" : "LOGIN"}
             </button>
           </form>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };

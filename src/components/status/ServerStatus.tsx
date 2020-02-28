@@ -17,7 +17,6 @@ function ServerStatus() {
       5000
     );
     return () => {
-      console.log("clear timer");
       clearInterval(timer);
     };
   }, [dispatch]);
