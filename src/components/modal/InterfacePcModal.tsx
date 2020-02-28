@@ -41,21 +41,24 @@ const InterfacePcModal = ({ onClickCancel, props }: InterfacePcModalType) => {
         onClick={onClickDiv}
         className="bg-white shadow-lg p-5 half-size rounded flex flex-col justify-center items-center"
       >
-        <span className="mt-1 text-gray-700 text-xl font-medium ">
+        <span className="mt-2 text-gray-700 text-xl font-medium border p-3 shadow-md">
           {interfacePcState?.ip}
         </span>
-        <span className="mt-1 text-gray-700 text-xl font-medium ">
+        <span className="mt-2 text-gray-700 text-xl font-medium border p-3 shadow-md">
           {interfacePcState?.equip.name}
         </span>
-        <span className="mt-1 text-gray-700 text-xl font-medium ">
+        <span className="mt-2 text-gray-700 text-xl font-medium border p-3 shadow-md">
           {interfacePcState?.equip.lab.name}
         </span>
-        <span className="mt-1 text-gray-700 text-xl font-medium ">
+        <span className="mt-2 text-gray-700 text-xl font-medium border p-3 shadow-md">
           {interfacePcState?.equip.lab.dept.name}
+        </span>{" "}
+        <span className="mt-2 text-gray-700 text-xl font-medium border p-3 shadow-md">
+          Error Count = {interfacePcState?.error_count}
         </span>{" "}
         <button
           onClick={onClickCancel}
-          className="broder rounded shadow-lg px-5 py-3 focus:outline-none mt-2 "
+          className="broder rounded shadow-lg px-5 py-3 focus:outline-none mt-2 hover:shadow-xl"
         >
           닫기
         </button>

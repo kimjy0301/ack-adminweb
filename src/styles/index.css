@@ -75,9 +75,46 @@
   transition: opacity 0.3s;
   opacity: 0;
 }
+.mr-015 {
+  margin-right: 0.15rem;
+}
 
+.righttop-8 {
+  right: -8px;
+  top: -8px;
+}
 .half-size {
   width: 50%;
   height: 50%;
 }
+.mb-005 {
+  margin-bottom: 0.05rem;
+}
+
+@keyframes errorKeyframes {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animation-error {
+  animation: errorKeyframes 1s linear infinite 0.5s;
+}
+
+.interfacePcIcon {
+  @apply shadow-lg rounded items-center flex justify-center transition-colors duration-200 relative;
+}
+
 @tailwind utilities;

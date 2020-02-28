@@ -40,13 +40,25 @@ function InterfacePc(props: InterfacePcProps) {
             props.status === "SUCCESS"
               ? "bg-green-400 hover:bg-green-500"
               : "bg-red-400 hover:bg-red-500"
-          } shadow-lg rounded items-center flex justify-center transition-colors duration-200`}
+          }  interfacePcIcon`}
         >
           <FontAwesomeIcon
             icon="desktop"
-            className="relative text-white"
+            className="relative text-white -mt-3"
             size="3x"
           />
+          <span className="absolute text-sm text-white bottom-0 mt-1 mb-2">
+            {props.lab}
+          </span>
+          {props.error_count > 0 && (
+            <div className="absolute righttop-8 text-white rounded-full bg-red-600 shadow-lg py-1 px-2 text-center font-semibold errorIcon">
+              <FontAwesomeIcon
+                icon="bomb"
+                className="mr-015 mb-005 animation-error"
+              />
+              {props.error_count}
+            </div>
+          )}
         </div>
         <div
           className={`speech-bubble absolute flex flex-col -mt-2 w-48 shadow-lg bg-white rounded p-5 mouseHover ${
@@ -58,7 +70,6 @@ function InterfacePc(props: InterfacePcProps) {
             <span>{props.dept}</span>
             <span>{props.lab}</span>
             <span>{props.callnumber}</span>
-            <span>Error count = {props.error_count}</span>
           </div>
         </div>
       </div>
