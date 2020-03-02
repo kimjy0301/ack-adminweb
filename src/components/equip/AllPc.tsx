@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import InterfacePc from "./equip/InterfacePc";
-import { useDispatch, useSelector } from "react-redux";
 import {
-  getInterfacePcListAsync,
-  InterfacePcState
-} from "../modules/interfacePc";
-import { RootState } from "../modules";
+  InterfacePcState,
+  getInterfacePcListAsync
+} from "../../modules/interfacePc";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../modules";
 import { BeatLoader } from "react-spinners";
+import InterfacePc from "./InterfacePc";
 
 const filterCondition = (interfacePc: InterfacePcState, param: string) => {
   if (
@@ -19,7 +19,7 @@ const filterCondition = (interfacePc: InterfacePcState, param: string) => {
   }
 };
 
-const Equip = () => {
+const AllPc = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getInterfacePcListAsync.request());
@@ -49,14 +49,14 @@ const Equip = () => {
           ></BeatLoader>
         </div>
       ) : (
-        <div className="flex flex-wrap -mx-56 border bg-white mt-32 justify-center py-10 relative">
-          <div className="-my-16 text-2xl absolute left-4rem bg-white border px-3 text-gray-700 rounded shadow-lg">
+        <div className="flex flex-wrap border bg-white justify-center pb-10 pt-20 relative">
+          <div className="-mt-12 text-2xl absolute left-4rem bg-white border px-3 text-gray-700 rounded shadow-lg">
             전체PC리스트
           </div>
           <input
             type="text"
             placeholder="IP,부서,검사실,전화번호"
-            className="-my-16 w-64 text-xl absolute right-4rem bg-white border py-3 px-5 text-gray-700 rounded shadow-lg focus:border-teal-400 focus:outline-none"
+            className="-mt-16 w-64 text-xl absolute right-4rem bg-white border py-3 px-5 text-gray-700 rounded shadow-lg focus:border-teal-400 focus:outline-none"
             value={deptInput}
             onChange={onChangedeptInput}
           ></input>
@@ -64,7 +64,7 @@ const Equip = () => {
             ? interfacePcList.map((interfacePc: InterfacePcState, i, array) => (
                 <React.Fragment key={i}>
                   {i === 0 && (
-                    <div className="-my-16 text-2xl absolute bg-white border px-3 text-gray-700 rounded shadow-lg">
+                    <div className="-mt-12 text-2xl absolute bg-white border px-3 text-gray-700 rounded shadow-lg">
                       {array.length} 대
                     </div>
                   )}
@@ -94,4 +94,4 @@ const Equip = () => {
   );
 };
 
-export default Equip;
+export default AllPc;

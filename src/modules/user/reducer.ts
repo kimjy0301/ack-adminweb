@@ -1,5 +1,12 @@
 import { createReducer } from "typesafe-actions";
-import { LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SET_USER } from "./actions";
+import {
+  LOGIN,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
+  LOGOUT,
+  SET_USER,
+  SET_FLOORTIMER
+} from "./actions";
 import { UserState, LoginAction } from "./types";
 
 // 초기상태를 선언합니다.
@@ -9,7 +16,8 @@ const initialState: UserState = {
   token: "",
   id: 0,
   error: undefined,
-  errorMsg: undefined
+  errorMsg: undefined,
+  floorTimer: false
 };
 
 const userReducer = createReducer<UserState, LoginAction>(initialState, {
@@ -41,7 +49,11 @@ const userReducer = createReducer<UserState, LoginAction>(initialState, {
     error: action.payload.message,
     errorMsg: action.payload.response?.data
   }),
-  [SET_USER]: (state, action) => (state = action.payload)
+  [SET_USER]: (state, action) => (state = action.payload),
+  [SET_FLOORTIMER]: (state, action) => ({
+    ...state,
+    floorTimer: action.payload
+  })
 });
 
 export default userReducer;

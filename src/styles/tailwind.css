@@ -707,6 +707,11 @@ video {
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   opacity: 0;
+  z-index: 999;
+}
+
+.nav-bar {
+  z-index: 9999;
 }
 
 .mr-015 {
@@ -800,6 +805,79 @@ video {
   -webkit-transition-duration: 200ms;
           transition-duration: 200ms;
   position: relative;
+}
+
+.sidebar-enter {
+  -webkit-transform: translate3d(-300px, 0, 0);
+          transform: translate3d(-300px, 0, 0);
+  width: 0px !important;
+}
+
+.sidebar-enter-done {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
+  width: 16.666667%;
+}
+
+.sidebar-exit {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  width: 16.666667%;
+}
+
+.sidebar-exit-done {
+  width: 0px !important;
+  -webkit-transform: translate3d(-300px, 0, 0);
+          transform: translate3d(-300px, 0, 0);
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-done {
+  opacity: 1;
+  -webkit-transition: all 1000ms;
+  transition: all 1000ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+}
+
+.fade-modal-enter {
+  opacity: 0;
+  z-index: 0;
+}
+
+.fade-modal-enter-done {
+  opacity: 1;
+  z-index: 999;
+  -webkit-transition: all 1000ms;
+  transition: all 1000ms;
+}
+
+.fade-modal-exit {
+  opacity: 1;
+  z-index: 999;
+}
+
+.fade-modal-exit-active {
+  opacity: 0;
+  z-index: 0;
+}
+
+.button-scale:hover {
+  -webkit-transform: scale(1.07);
+          transform: scale(1.07);
 }
 
 .sr-only {

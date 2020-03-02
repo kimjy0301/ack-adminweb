@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../modules";
 import { increase } from "../modules/counter";
@@ -43,10 +43,24 @@ const Main = () => {
 
   const isLogin = useSelector((state: RootState) => state.user.isLogin);
 
+  const divRef = useRef(null);
+
+  useEffect(() => {
+    const div: any = divRef.current;
+    if (div !== undefined) {
+      setTimeout(() => {
+        div.classList.add("opacity-100");
+      }, 500);
+    }
+  }, []);
+
   return (
     <>
       {isLogin ? (
-        <div className="flex items-center justify-center py-5 h-full flex-col">
+        <div
+          ref={divRef}
+          className="opacity-0 transition-opacity duration-700 flex items-center justify-center py-5 h-full flex-col"
+        >
           <ServerStatus></ServerStatus>
 
           <div className="bg-white p-3 rounded-md shadow-lg mt-10">

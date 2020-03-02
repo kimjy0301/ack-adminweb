@@ -38,14 +38,6 @@ const Login = () => {
     }
   }, [isLogin, history, locationstate.from]);
 
-  useEffect(() => {
-    idRef.current?.focus();
-  }, []);
-
-  useEffect(() => {
-    idRef.current?.focus();
-  }, [isLoading]);
-
   return (
     <>
       {isLoading ? (
@@ -64,6 +56,7 @@ const Login = () => {
             onSubmit={onSubmit}
           >
             <input
+              autoFocus
               className="my-3 border shadow-inner p-3 focus:outline-none focus:border-teal-400"
               type="text"
               placeholder="ID"

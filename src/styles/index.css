@@ -74,6 +74,10 @@
   background: rgba(0, 0, 0, 0.7);
   transition: opacity 0.3s;
   opacity: 0;
+  z-index: 999;
+}
+.nav-bar {
+  z-index: 9999;
 }
 .mr-015 {
   margin-right: 0.15rem;
@@ -115,6 +119,59 @@
 
 .interfacePcIcon {
   @apply shadow-lg rounded items-center flex justify-center transition-colors duration-200 relative;
+}
+
+.sidebar-enter {
+  transform: translate3d(-300px, 0, 0);
+  width: 0px !important;
+}
+.sidebar-enter-done {
+  transform: translate3d(0, 0, 0);
+  transition: all 200ms;
+  width: 16.666667%;
+}
+.sidebar-exit {
+  transform: translate3d(0, 0, 0);
+  width: 16.666667%;
+}
+.sidebar-exit-done {
+  width: 0px !important;
+  transform: translate3d(-300px, 0, 0);
+  transition: all 200ms;
+}
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-done {
+  opacity: 1;
+  transition: all 1000ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+}
+.fade-modal-enter {
+  opacity: 0;
+  z-index: 0;
+}
+.fade-modal-enter-done {
+  opacity: 1;
+  z-index: 999;
+  transition: all 1000ms;
+}
+.fade-modal-exit {
+  opacity: 1;
+  z-index: 999;
+}
+.fade-modal-exit-active {
+  opacity: 0;
+  z-index: 0;
+}
+
+.button-scale:hover {
+  transform: scale(1.07);
 }
 
 @tailwind utilities;

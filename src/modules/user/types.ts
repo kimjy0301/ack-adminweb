@@ -9,6 +9,7 @@ export type UserState = {
   id: number;
   error: string | undefined;
   errorMsg: string | undefined;
+  floorTimer: boolean;
 };
 
 export type LoginAction = ActionType<typeof actions>;

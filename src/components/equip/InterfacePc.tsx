@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ModalPortal from "../modal/ModalPortal";
 import InterfacePcModal from "../modal/InterfacePcModal";
 import { InterfacePcState } from "../../modules/interfacePc";
+import { useDispatch } from "react-redux";
+import { setfloortimer } from "../../modules/user";
 
 export type InterfacePcProps = {
   interfacePcState: InterfacePcState;
@@ -11,6 +13,8 @@ export type InterfacePcProps = {
 function InterfacePc(props: InterfacePcProps) {
   const [isHover, setIsHover] = useState(false);
   const [viewModal, setViewModal] = useState(false);
+
+  const dispatch = useDispatch();
 
   const onMouseEnter = (event: React.MouseEvent) => {
     setIsHover(true);
@@ -21,9 +25,11 @@ function InterfacePc(props: InterfacePcProps) {
 
   const onClick = (e: React.MouseEvent) => {
     setViewModal(true);
+    dispatch(setfloortimer(false));
   };
   const onClickCancel = (e: React.MouseEvent) => {
     setViewModal(false);
+    dispatch(setfloortimer(true));
   };
   return (
     <>
@@ -56,7 +62,7 @@ function InterfacePc(props: InterfacePcProps) {
           )}
         </div>
         <div
-          className={`speech-bubble absolute flex flex-col -mt-2 w-48 shadow-lg bg-white rounded p-5 mouseHover ${
+          className={`speech-bubble absolute flex flex-col -mx-2 mt-1 w-34 shadow-lg bg-white rounded p-5 mouseHover ${
             isHover ? "" : "hide"
           }`}
         >
@@ -73,7 +79,7 @@ function InterfacePc(props: InterfacePcProps) {
         <ModalPortal>
           <InterfacePcModal
             onClickCancel={onClickCancel}
-            props={props}
+            interfacePcState={props.interfacePcState}
           ></InterfacePcModal>
         </ModalPortal>
       )}

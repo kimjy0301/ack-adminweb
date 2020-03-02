@@ -16,7 +16,8 @@ function* loginSaga(action: ReturnType<typeof getLoginAsync.request>) {
       token: `xjwt ${userProfile.token}`,
       id: userProfile.id,
       error: undefined,
-      errorMsg: undefined
+      errorMsg: undefined,
+      floorTimer: false
     };
 
     yield put(getLoginAsync.success(state));

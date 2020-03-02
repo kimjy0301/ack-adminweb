@@ -1,28 +1,20 @@
 import React, { useEffect, useRef } from "react";
-import { InterfacePcProps } from "../equip/InterfacePc";
 import { InterfacePcState } from "../../modules/interfacePc";
-import { useSelector, shallowEqual } from "react-redux";
-import { RootState } from "../../modules";
 
 export type InterfacePcModalType = {
   onClickCancel: (event: React.MouseEvent) => void;
-  props: InterfacePcProps;
+  interfacePcState: InterfacePcState;
 };
 
-const InterfacePcModal = ({ onClickCancel, props }: InterfacePcModalType) => {
+const InterfacePcModal = ({
+  onClickCancel,
+  interfacePcState
+}: InterfacePcModalType) => {
   const onClickDiv = (event: React.MouseEvent) => {
     event.stopPropagation();
   };
 
   const divRef = useRef(null);
-
-  const interfacePcState: InterfacePcState | undefined = useSelector(
-    (state: RootState) =>
-      state.interfacePcList.results.find(
-        (pcState: InterfacePcState) => pcState.id === props.interfacePcState.id
-      ),
-    shallowEqual
-  );
 
   useEffect(() => {
     const div: any = divRef.current;
@@ -34,7 +26,7 @@ const InterfacePcModal = ({ onClickCancel, props }: InterfacePcModalType) => {
   return (
     <div
       ref={divRef}
-      className="bg-modal w-full h-full flex items-center justify-center fixed h-screen w-screen left-0 top-0"
+      className="bg-modal w-full flex items-center justify-center fixed h-screen w-screen left-0 top-0"
       onClick={onClickCancel}
     >
       <div
