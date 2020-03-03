@@ -8,6 +8,7 @@ import { setfloortimer } from "../../modules/user";
 
 export type InterfacePcProps = {
   interfacePcState: InterfacePcState;
+  size?: string;
 };
 
 function InterfacePc(props: InterfacePcProps) {
@@ -37,11 +38,11 @@ function InterfacePc(props: InterfacePcProps) {
         <div
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
-          className={`w-24 h-24   ${
+          className={`${props.size ? props.size : " w-24 h-24 "}  ${
             props.interfacePcState.status === "SUCCESS"
               ? "bg-green-400 hover:bg-green-500"
-              : "bg-red-400 hover:bg-red-500"
-          }  interfacePcIcon`}
+              : "bg-gray-500 hover:bg-gray-600"
+          }  interfacePcIcon button-scale`}
         >
           <FontAwesomeIcon
             icon="desktop"

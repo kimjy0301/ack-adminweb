@@ -38,7 +38,7 @@
   },
   "scripts": {
     "start": "npm run css && react-scripts start",
-    "css": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
+    "css": "tailwind build src/static/styles/index.css -o src/static/styles/tailwind.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

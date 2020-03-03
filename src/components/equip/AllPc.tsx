@@ -39,57 +39,61 @@ const AllPc = () => {
 
   return (
     <>
-      {isLoading ? (
-        <div className="flex justify-center items-center h-screen">
-          <BeatLoader
-            loading={isLoading}
-            color={"#38b2ac"}
-            size={40}
-            key={9999}
-          ></BeatLoader>
-        </div>
-      ) : (
-        <div className="flex flex-wrap border bg-white justify-center pb-10 pt-20 relative">
-          <div className="-mt-12 text-2xl absolute left-4rem bg-white border px-3 text-gray-700 rounded shadow-lg">
-            전체PC리스트
+      <div className="flex flex-wrap border bg-white justify-center pb-10 pt-20 relative min-h-28">
+        {isLoading ? (
+          <div className="flex justify-center items-center h-screen">
+            <BeatLoader
+              loading={isLoading}
+              color={"#38b2ac"}
+              size={40}
+              key={9999}
+            ></BeatLoader>
           </div>
-          <input
-            type="text"
-            placeholder="IP,부서,검사실,전화번호"
-            className="-mt-16 w-64 text-xl absolute right-4rem bg-white border py-3 px-5 text-gray-700 rounded shadow-lg focus:border-teal-400 focus:outline-none"
-            value={deptInput}
-            onChange={onChangedeptInput}
-          ></input>
-          {deptInput === ""
-            ? interfacePcList.map((interfacePc: InterfacePcState, i, array) => (
-                <React.Fragment key={i}>
-                  {i === 0 && (
-                    <div className="-mt-12 text-2xl absolute bg-white border px-3 text-gray-700 rounded shadow-lg">
-                      {array.length} 대
-                    </div>
-                  )}
-                  <InterfacePc interfacePcState={interfacePc}></InterfacePc>
-                </React.Fragment>
-              ))
-            : interfacePcList
-                .filter((interfacePc: InterfacePcState) =>
-                  filterCondition(interfacePc, deptInput)
+        ) : (
+          <>
+            <div className="-mt-16 text-2xl absolute left-4rem bg-white border px-3 text-gray-700 rounded shadow-lg">
+              전체PC리스트
+            </div>
+            <input
+              type="text"
+              placeholder="IP,부서,검사실,전화번호"
+              className="-mt-16 w-64 text-xl absolute right-4rem bg-white border py-3 px-5 text-gray-700 rounded shadow-lg focus:border-teal-400 focus:outline-none"
+              value={deptInput}
+              onChange={onChangedeptInput}
+            ></input>
+            {deptInput === ""
+              ? interfacePcList.map(
+                  (interfacePc: InterfacePcState, i, array) => (
+                    <React.Fragment key={i}>
+                      {i === 0 && (
+                        <div className="-mt-16 text-2xl absolute bg-white border px-3 text-gray-700 rounded shadow-lg">
+                          {array.length} 대
+                        </div>
+                      )}
+                      <InterfacePc interfacePcState={interfacePc}></InterfacePc>
+                    </React.Fragment>
+                  )
                 )
-                .map((interfacePc: InterfacePcState, i, array) => (
-                  <React.Fragment key={i}>
-                    {i === 0 && (
-                      <div
-                        key={i}
-                        className="-my-16 text-2xl absolute bg-white border px-3 text-gray-700 rounded shadow-lg"
-                      >
-                        {array.length} 대
-                      </div>
-                    )}
-                    <InterfacePc interfacePcState={interfacePc}></InterfacePc>
-                  </React.Fragment>
-                ))}
-        </div>
-      )}
+              : interfacePcList
+                  .filter((interfacePc: InterfacePcState) =>
+                    filterCondition(interfacePc, deptInput)
+                  )
+                  .map((interfacePc: InterfacePcState, i, array) => (
+                    <React.Fragment key={i}>
+                      {i === 0 && (
+                        <div
+                          key={i}
+                          className="-my-16 text-2xl absolute bg-white border px-3 text-gray-700 rounded shadow-lg"
+                        >
+                          {array.length} 대
+                        </div>
+                      )}
+                      <InterfacePc interfacePcState={interfacePc}></InterfacePc>
+                    </React.Fragment>
+                  ))}
+          </>
+        )}
+      </div>
     </>
   );
 };

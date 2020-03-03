@@ -48,11 +48,13 @@ const Main = () => {
   useEffect(() => {
     const div: any = divRef.current;
     if (div !== undefined) {
-      setTimeout(() => {
-        div.classList.add("opacity-100");
-      }, 500);
+      if (isLogin) {
+        setTimeout(() => {
+          div.classList.add("opacity-100");
+        }, 500);
+      }
     }
-  }, []);
+  }, [isLogin]);
 
   return (
     <>

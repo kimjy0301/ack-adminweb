@@ -13,6 +13,7 @@ export type Lab = {
   name: string;
   dept: Dept;
   call_number: string;
+  bg_image: string;
 };
 
 export type Equip = {

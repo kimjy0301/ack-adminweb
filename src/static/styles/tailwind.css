@@ -668,6 +668,10 @@ video {
   width: 90%;
 }
 
+.h-p50 {
+  height: 50%;
+}
+
 .speech-bubble {
   position: relative;
   background: #ffffff;
@@ -878,6 +882,15 @@ video {
 .button-scale:hover {
   -webkit-transform: scale(1.07);
           transform: scale(1.07);
+}
+
+.min-h-28 {
+  min-height: 28.3rem;
+}
+
+.interfacePcSm-rl {
+  right: -15px;
+  top: -13px;
 }
 
 .sr-only {

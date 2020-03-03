@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "./styles/tailwind.css";
+import "./static/styles/tailwind.css";
 import { createStore, applyMiddleware } from "redux";
 import rootReducer, { rootSaga } from "./modules";
 import { Provider } from "react-redux";

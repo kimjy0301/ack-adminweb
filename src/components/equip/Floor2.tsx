@@ -1,10 +1,9 @@
 import React from "react";
-import bgImg from "../../static/img/검사실2.jpg";
 import bgImg2 from "../../static/img/검사실3.jpg";
 import { InterfacePcState, Equip, Dept, Lab } from "../../modules/interfacePc";
 import Laboratory from "./Laboratory";
 
-const Floor1 = () => {
+const Floor2 = () => {
   const dept: Dept = {
     id: 1,
     name: "구;ㅣ찮아부서"
@@ -37,7 +36,15 @@ const Floor1 = () => {
     <>
       <div className="flex flex-wrap border bg-white justify-center pb-10 pt-10 relative min-h-28">
         <Laboratory
-          bgImg={bgImg}
+          bgImg={lab.bg_image}
+          interfacePcState={interfacePcState}
+        ></Laboratory>
+        <Laboratory
+          bgImg={bgImg2}
+          interfacePcState={interfacePcState}
+        ></Laboratory>
+        <Laboratory
+          bgImg={bgImg2}
           interfacePcState={interfacePcState}
         ></Laboratory>
         <Laboratory
@@ -49,4 +56,4 @@ const Floor1 = () => {
   );
 };
 
-export default Floor1;
+export default Floor2;

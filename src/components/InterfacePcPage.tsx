@@ -15,6 +15,7 @@ import ScrollTop from "../lib/ScrollTop";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../modules";
 import { setfloortimer } from "../modules/user";
+import Floor2 from "./equip/Floor2";
 
 const urlList: string[] = [
   "/interfacepc/allpc",
@@ -131,15 +132,25 @@ const InterfacePcPage = () => {
           </div>
         </CSSTransition>
         {!folded && (
-          <button
-            className="fixed z-50 left-10 text-teal-500 hover:text-teal-600 focus:outline-none "
-            onClick={onClickFolded}
-          >
-            <FontAwesomeIcon icon="bars" className="" size="2x" />
-          </button>
+          <>
+            <button
+              className="fixed z-50 left-10 text-teal-500 hover:text-teal-600 focus:outline-none button-scale "
+              onClick={onClickFolded}
+            >
+              <FontAwesomeIcon icon="bars" className="" size="2x" />
+            </button>
+            <button
+              onClick={onClickClearTimeout}
+              className={`${
+                enableTimeout ? "text-green-500" : "text-red-500"
+              } mt-10 fixed z-50 left-10 focus:outline-none transition-all duration-200 button-scale `}
+            >
+              <FontAwesomeIcon icon="history" className="" size="2x" />
+            </button>
+          </>
         )}
 
-        <div className="w-full mx-10 z-40">
+        <div className="w-full mx-12 z-40">
           <Route
             render={({ location }) => {
               return (
@@ -161,7 +172,7 @@ const InterfacePcPage = () => {
                           <Floor1></Floor1>
                         </Route>
                         <Route path={`${path}/2ndfloor`}>
-                          <div className="absolute">2층</div>
+                          <Floor2></Floor2>
                         </Route>
                       </Switch>
                     </ScrollTop>
