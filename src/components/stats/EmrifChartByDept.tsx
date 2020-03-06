@@ -5,7 +5,6 @@ import {
   XAxis,
   Tooltip,
   Legend,
-  Line,
   ResponsiveContainer,
   BarChart,
   Bar

@@ -45,8 +45,6 @@ export async function getEmrifCountByDept(
 
   const url = `${APIURL}/core/stats/emrifdept/?year=${year}&month=${month}&dept=${paramStr}`;
 
-  console.log(url);
-
   const token = localStorage.getItem("jwt_token");
   const response = await axios.get<EmrifCount[]>(url, {
     headers: {
