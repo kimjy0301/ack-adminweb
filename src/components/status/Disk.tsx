@@ -12,7 +12,7 @@ type DiskType = {
 
 function Disk(props: DiskType) {
   return (
-    <div className="bg-white rounded-md shadow-lg mt-10 w-20rem m-10">
+    <div className="bg-white rounded-md shadow-lg mt-10 w-20rem">
       <div className="flex justify-between">
         <div className="w-20 h-20 bg-red-400 relative top-30 left-20 flex justify-center items-center shadow-lg rounded">
           <FontAwesomeIcon icon="hdd" className="text-white" size="2x" />

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { InterfacePcState } from "../../modules/interfacePc";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export type InterfacePcModalType = {
   onClickCancel: (event: React.MouseEvent) => void;
@@ -31,14 +32,18 @@ const ErrorModal = ({
     >
       <div
         onClick={onClickDiv}
-        className="bg-white shadow-lg p-5 half-size rounded flex flex-col justify-center items-center"
+        className="bg-white shadow-lg p-5 half-size rounded flex flex-col justify-center items-center relative"
       >
         에러!!!
         <button
           onClick={onClickCancel}
-          className="rounded shadow-md px-5  border py-3 focus:outline-none mt-2 hover:shadow-lg"
+          className="absolute right-3px top-0  focus:outline-none"
         >
-          닫기
+          <FontAwesomeIcon
+            icon="window-close"
+            className="text-red-500 hover:text-red-600 transition-colors duration-150"
+            size="2x"
+          />
         </button>
       </div>
     </div>

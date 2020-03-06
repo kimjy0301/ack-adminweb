@@ -14,7 +14,7 @@ function ServerStatus() {
     dispatch(getServerStateAsync.request());
     let timer = setInterval(
       () => dispatch(getServerStateAsync.request()),
-      5000
+      60000
     );
     return () => {
       clearInterval(timer);
@@ -23,23 +23,21 @@ function ServerStatus() {
 
   return (
     <>
-      <div className="flex flex-wrap">
-        <CPU cpu={serverStatus.cpu} isLoading={serverStatus.isLoading}></CPU>
-        <Memory
-          free_memory={serverStatus.free_memory}
-          total_memory={serverStatus.total_memory}
-          isLoading={serverStatus.isLoading}
-          used_memory={serverStatus.used_memory}
-          percent_memory={serverStatus.percent_memory}
-        ></Memory>
-        <Disk
-          free_disk={serverStatus.free_disk}
-          total_disk={serverStatus.total_disk}
-          isLoading={serverStatus.isLoading}
-          used_disk={serverStatus.used_disk}
-          percent_disk={serverStatus.percent_disk}
-        ></Disk>
-      </div>
+      <CPU cpu={serverStatus.cpu} isLoading={serverStatus.isLoading}></CPU>
+      <Memory
+        free_memory={serverStatus.free_memory}
+        total_memory={serverStatus.total_memory}
+        isLoading={serverStatus.isLoading}
+        used_memory={serverStatus.used_memory}
+        percent_memory={serverStatus.percent_memory}
+      ></Memory>
+      <Disk
+        free_disk={serverStatus.free_disk}
+        total_disk={serverStatus.total_disk}
+        isLoading={serverStatus.isLoading}
+        used_disk={serverStatus.used_disk}
+        percent_disk={serverStatus.percent_disk}
+      ></Disk>
     </>
   );
 }

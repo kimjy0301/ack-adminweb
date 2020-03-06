@@ -1,16 +1,17 @@
 import React, { useEffect, useRef } from "react";
-import { InterfacePcState } from "../../modules/interfacePc";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export type InterfacePcModalType = {
+export type DeptSettingModalType = {
   onClickCancel: (event: React.MouseEvent) => void;
-  interfacePcState: InterfacePcState;
+  onClickConfirm: (event: React.MouseEvent) => void;
+  deptList: string[];
 };
 
-const InterfacePcModal = ({
+const DeptSettingModal = ({
   onClickCancel,
-  interfacePcState
-}: InterfacePcModalType) => {
+  onClickConfirm,
+  deptList
+}: DeptSettingModalType) => {
   const onClickDiv = (event: React.MouseEvent) => {
     event.stopPropagation();
   };
@@ -34,21 +35,15 @@ const InterfacePcModal = ({
         onClick={onClickDiv}
         className="bg-white shadow-lg p-5 half-size rounded flex flex-col justify-center items-center relative"
       >
-        <span className="mt-2 text-gray-700 text-xl font-medium border p-3 shadow-md">
-          {interfacePcState?.ip}
-        </span>
-        <span className="mt-2 text-gray-700 text-xl font-medium border p-3 shadow-md">
-          {interfacePcState?.equip.name}
-        </span>
-        <span className="mt-2 text-gray-700 text-xl font-medium border p-3 shadow-md">
-          {interfacePcState?.equip.lab.name}
-        </span>
-        <span className="mt-2 text-gray-700 text-xl font-medium border p-3 shadow-md">
-          {interfacePcState?.equip.lab.dept.name}
-        </span>{" "}
-        <span className="mt-2 text-gray-700 text-xl font-medium border p-3 shadow-md">
-          Error Count = {interfacePcState?.error_count}
-        </span>{" "}
+        부서세팅모달
+        <div>
+          {deptList.map((value, i) => (
+            <div key={i}>
+              <input type="checkbox" id="value" name="value" value="value" />
+              <label htmlFor="value">{value}</label>
+            </div>
+          ))}
+        </div>
         <button
           onClick={onClickCancel}
           className="absolute right-3px top-0  focus:outline-none"
@@ -64,4 +59,4 @@ const InterfacePcModal = ({
   );
 };
 
-export default InterfacePcModal;
+export default DeptSettingModal;

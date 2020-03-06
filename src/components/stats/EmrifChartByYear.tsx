@@ -41,10 +41,10 @@ function EmrifChartByYear() {
   return (
     <>
       <div className="flex flex-wrap w-full justify-center">
-        <div className="bg-white p-3 w-1/2 rounded-md shadow-lg mt-10 mx-40">
+        <div className="bg-white p-3 w-full rounded-md shadow-lg">
           {error && <span>에러어어</span>}
           <select
-            className="focus:outline-none focus:border-teal-400 border px-3 py-1 text-xl text-gray-700"
+            className="text-2xl w-40 text-center focus:outline-none focus:border-teal-400 border shadow rounded px-8"
             onChange={onSelect}
           >
             {yearList.map((value, i) => (

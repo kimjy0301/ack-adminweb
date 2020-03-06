@@ -672,6 +672,22 @@ video {
   height: 50%;
 }
 
+.h-p100 {
+  height: 100%;
+}
+
+.right-3px {
+  right: 3px;
+}
+
+.w-80rem {
+  width: 80rem;
+}
+
+.w-100rem {
+  width: 100rem;
+}
+
 .speech-bubble {
   position: relative;
   background: #ffffff;
