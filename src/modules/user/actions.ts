@@ -1,7 +1,7 @@
 import { createAsyncAction, createAction } from "typesafe-actions";
 import { AxiosError } from "axios";
 import { UserState } from "./types";
-import { typeLoginRequest } from "../../api/loginAPI";
+import { LoginRequest } from "../api/loginAPI";
 
 // 액션 type 선언
 export const LOGIN = "user/LOGIN";
@@ -22,4 +22,4 @@ export const getLoginAsync = createAsyncAction(
   LOGIN,
   LOGIN_SUCCESS,
   LOGIN_ERROR
-)<typeLoginRequest, UserState, AxiosError>();
+)<LoginRequest, UserState, AxiosError>();

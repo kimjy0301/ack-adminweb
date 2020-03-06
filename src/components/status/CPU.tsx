@@ -18,7 +18,7 @@ function CPU(props: CpuType) {
           <span className="text-xl font-medium text-gray-600 self-end">
             CPU 점유율
           </span>
-          <span className="text-3xl font-medium text-gray-600 self-end">
+          <span className="text-xl font-medium text-gray-600 self-end">
             {props.isLoading ? (
               <BeatLoader
                 loading={props.isLoading}

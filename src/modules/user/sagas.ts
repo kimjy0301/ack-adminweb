@@ -1,14 +1,11 @@
 import { getLoginAsync, LOGIN, LOGOUT } from "./actions";
 import { put, takeEvery, call, select } from "redux-saga/effects";
-import { typeLoginResponse, getUserToken } from "../../api/loginAPI";
+import { LoginResponse, getUserToken } from "../api/loginAPI";
 import { UserState } from "./types";
 
 function* loginSaga(action: ReturnType<typeof getLoginAsync.request>) {
   try {
-    const userProfile: typeLoginResponse = yield call(
-      getUserToken,
-      action.payload
-    );
+    const userProfile: LoginResponse = yield call(getUserToken, action.payload);
 
     const state: UserState = {
       isLogin: true,

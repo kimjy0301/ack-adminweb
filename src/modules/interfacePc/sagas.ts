@@ -1,7 +1,16 @@
-import { getInterfacePcListAsync, INTERFACEPCLIST } from "./actions";
-import { put, takeEvery, call } from "redux-saga/effects";
-import { InterfacePcList } from "./types";
-import { getInterfacePcList } from "../../api/InterfacePcAPI";
+import {
+  getInterfacePcListAsync,
+  INTERFACEPCLIST,
+  INTERFACEPC_POSITION,
+  setInterfacePcPositionAsync,
+  interfacepc_set
+} from "./actions";
+import { put, takeEvery, call, delay, takeLatest } from "redux-saga/effects";
+import { InterfacePcList, InterfacePcState } from "./types";
+import {
+  getInterfacePcList,
+  setInterfacePcPosition
+} from "../api/InterfacePcAPI";
 
 function* getInterfacePcListSaga() {
   try {
@@ -12,6 +21,26 @@ function* getInterfacePcListSaga() {
   }
 }
 
+function* setInterfacePcPositionSaga(
+  action: ReturnType<typeof setInterfacePcPositionAsync.request>
+) {
+  try {
+    const interfacePcState: InterfacePcState = yield call(
+      setInterfacePcPosition,
+      action.payload
+    );
+
+    yield delay(100);
+    yield put(interfacepc_set(interfacePcState));
+
+    yield put(setInterfacePcPositionAsync.success(interfacePcState));
+  } catch (e) {
+    console.log(e);
+    yield put(setInterfacePcPositionAsync.failure(e));
+  }
+}
+
 export function* interfacePcListSaga() {
-  yield takeEvery(INTERFACEPCLIST, getInterfacePcListSaga);
+  yield takeLatest(INTERFACEPCLIST, getInterfacePcListSaga);
+  yield takeEvery(INTERFACEPC_POSITION, setInterfacePcPositionSaga);
 }

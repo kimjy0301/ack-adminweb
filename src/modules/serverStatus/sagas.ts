@@ -1,7 +1,7 @@
 import { getServerStateAsync, SERVERSTATUS } from "./actions";
 import { put, takeEvery, call, delay } from "redux-saga/effects";
 import { ServerStatusState } from "./types";
-import { getServerStatus } from "../../api/StatusAPI";
+import { getServerStatus } from "../api/StatusAPI";
 
 function* getServerStateSaga() {
   try {

@@ -2,9 +2,13 @@ import React, { useState, memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ModalPortal from "../modal/ModalPortal";
 import InterfacePcModal from "../modal/InterfacePcModal";
-import { InterfacePcState } from "../../modules/interfacePc";
+import {
+  InterfacePcState,
+  setInterfacePcPositionAsync
+} from "../../modules/interfacePc";
 import { useDispatch } from "react-redux";
 import { setfloortimer } from "../../modules/user";
+import { InterfacePcPosition } from "../../modules/api/InterfacePcAPI";
 
 export type InterfacePcProps = {
   interfacePcState: InterfacePcState;
@@ -18,8 +22,8 @@ function InterfacePcSm(props: InterfacePcProps) {
 
   const [isHover, setIsHover] = useState(false);
   const [viewModal, setViewModal] = useState(false);
-  const [left, setLeft] = useState(0);
-  const [top, setTop] = useState(0);
+  const left = props.interfacePcState.position_left;
+  const top = props.interfacePcState.position_top;
 
   const dispatch = useDispatch();
 
@@ -39,16 +43,23 @@ function InterfacePcSm(props: InterfacePcProps) {
     dispatch(setfloortimer(true));
   };
   const onDragStart = (event: React.DragEvent<HTMLDivElement>) => {
+    event.dataTransfer.effectAllowed = "move";
     oldX = event.screenX;
     oldY = event.screenY;
   };
 
   const onDragEnd = (event: React.DragEvent<HTMLDivElement>) => {
-    event.preventDefault();
     newX = event.screenX;
     newY = event.screenY;
-    setLeft(left + (newX - oldX));
-    setTop(top + (newY - oldY));
+
+    if (event.dataTransfer.dropEffect === "move") {
+      const interfacePcPosition: InterfacePcPosition = {
+        id: props.interfacePcState.id,
+        position_left: left + newX - oldX,
+        position_top: top + newY - oldY
+      };
+      dispatch(setInterfacePcPositionAsync.request(interfacePcPosition));
+    }
   };
 
   return (
@@ -77,7 +88,7 @@ function InterfacePcSm(props: InterfacePcProps) {
               size="2x"
             />
             {props.interfacePcState.error_count > 0 && (
-              <div className="absolute interfacePcSm-rl text-white text-xs rounded-full bg-red-600 shadow-lg py-1 px-2 text-center font-semibold errorIcon">
+              <div className="absolute z-30 interfacePcSm-rl text-white text-xs rounded-full bg-red-600 shadow-lg py-1 px-2 text-center font-semibold errorIcon">
                 <FontAwesomeIcon
                   icon="bomb"
                   className="mr-015 mb-005 animation-error"

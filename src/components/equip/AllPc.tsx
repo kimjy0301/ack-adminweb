@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   InterfacePcState,
   getInterfacePcListAsync
@@ -21,13 +21,15 @@ const filterCondition = (interfacePc: InterfacePcState, param: string) => {
 
 const AllPc = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getInterfacePcListAsync.request());
-  }, [dispatch]);
 
   const interfacePcList: InterfacePcState[] = useSelector(
     (state: RootState) => state.interfacePcList.results
   );
+
+  if (interfacePcList.length === 0) {
+    dispatch(getInterfacePcListAsync.request());
+  }
+
   const isLoading: boolean = useSelector(
     (state: RootState) => state.interfacePcList.isLoading
   );

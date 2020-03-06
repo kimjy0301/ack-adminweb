@@ -10,18 +10,17 @@ import {
 } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import Floor1 from "./equip/Floor1";
+import Floor from "./equip/Floor";
 import ScrollTop from "../lib/ScrollTop";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../modules";
 import { setfloortimer } from "../modules/user";
-import Floor2 from "./equip/Floor2";
+import {
+  getInterfacePcListAsync,
+  InterfacePcState
+} from "../modules/interfacePc";
 
-const urlList: string[] = [
-  "/interfacepc/allpc",
-  "/interfacepc/1stfloor",
-  "/interfacepc/2ndfloor"
-];
+let urlList: string[] = [];
 
 const InterfacePcPage = () => {
   let { path, url } = useRouteMatch();
@@ -31,7 +30,35 @@ const InterfacePcPage = () => {
   const enableTimeout = useSelector(
     (state: RootState) => state.user.floorTimer
   );
+
   const dispatch = useDispatch();
+  const interfacePcStateList: InterfacePcState[] = useSelector(
+    (state: RootState) => state.interfacePcList.results
+  );
+
+  const tempList: string[] = [];
+  interfacePcStateList.map((value: InterfacePcState) =>
+    tempList.push(value.equip.lab.floor)
+  );
+  // 층 리스트 추출
+  const distinctList = tempList
+    .filter((item, index) => tempList.indexOf(item) === index)
+    .sort((a, b) => {
+      if (a.match("지하")) {
+        return -10;
+      } else {
+        const z: number = +a.replace("층", "");
+        const y: number = +b.replace("층", "");
+
+        if (z > y) {
+          return 1;
+        } else if (z < y) {
+          return -1;
+        }
+        return 0;
+      }
+    });
+  distinctList.map(value => urlList.push(`/interfacepc/floor/${value}/`));
 
   const onClickFolded = () => {
     setFolded(!folded);
@@ -51,10 +78,21 @@ const InterfacePcPage = () => {
 
   useEffect(() => {
     let timer: any;
+    timer = setInterval(() => {
+      console.log("tick");
+      dispatch(getInterfacePcListAsync.request());
+    }, 60000000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    let timer: any;
     if (enableTimeout) {
       timer = setTimeout(() => {
         history.push(pushPath);
-      }, 60000);
+      }, 10000);
     }
     return () => {
       clearTimeout(timer);
@@ -102,27 +140,20 @@ const InterfacePcPage = () => {
               전체리스트
             </Link>
 
-            <Link
-              type="button"
-              className={`text-center mt-10 text-xl w-full py-2 hover:border border-0 self-center ${location.pathname.match(
-                "1stfloor"
-              ) &&
-                "bg-teal-400 text-white shadow-xl"} transition-all transition duration-200 button-scale `}
-              to={`${url}/1stfloor`}
-            >
-              1층
-            </Link>
+            {distinctList.map((value: string, i) => (
+              <Link
+                key={i}
+                type="button"
+                className={`text-center mt-6 text-xl w-full py-2 hover:border border-0 self-center ${location.pathname.match(
+                  `floor/${value}`
+                ) &&
+                  "bg-teal-400 text-white shadow-xl"} transition-all transition duration-200 button-scale `}
+                to={`${url}/floor/${value}`}
+              >
+                {value}
+              </Link>
+            ))}
 
-            <Link
-              type="button"
-              className={`text-center mt-10 text-xl w-full py-2 hover:border border-0 self-center ${location.pathname.match(
-                "2ndfloor"
-              ) &&
-                "bg-teal-400 text-white shadow-xl"} transition-all transition duration-200 button-scale `}
-              to={`${url}/2ndfloor`}
-            >
-              2층
-            </Link>
             <button
               onClick={onClickFolded}
               className={`text-gray-700 text-center mt-10 text-xl w-40 hover:border border-0 self-center focus:outline-none button-scale `}
@@ -168,11 +199,8 @@ const InterfacePcPage = () => {
                         <Route path={`${path}/allpc`}>
                           <AllPc></AllPc>
                         </Route>
-                        <Route path={`${path}/1stfloor`}>
-                          <Floor1></Floor1>
-                        </Route>
-                        <Route path={`${path}/2ndfloor`}>
-                          <Floor2></Floor2>
+                        <Route path={`${path}/floor/:floorId`}>
+                          <Floor></Floor>
                         </Route>
                       </Switch>
                     </ScrollTop>

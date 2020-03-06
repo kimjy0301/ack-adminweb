@@ -1,6 +1,6 @@
 import axios from "axios";
 import { APIURL } from "./SettingAPI";
-import { ServerStatusState } from "../modules/serverStatus";
+import { ServerStatusState } from "../serverStatus";
 
 export async function getServerStatus() {
   // Generic 을 통해 응답 데이터의 타입을 설정 할 수 있습니다.
