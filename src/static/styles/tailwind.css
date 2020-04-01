@@ -619,6 +619,20 @@ video {
   }
 }
 
+@media print {
+  #printBtn {
+    visibility: hidden;
+  }
+}
+
+@page {
+  size: auto; /* auto is the initial value */
+
+  /* this affects the margin in the printer settings */
+
+  margin: 15mm 20mm 15mm 20mm;
+}
+
 .border-section {
   border-bottom-width: 1px;
   border-color: #cbd5e0;

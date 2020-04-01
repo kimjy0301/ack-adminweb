@@ -32,6 +32,7 @@ export type InterfacePcState = {
   equip: Equip;
   status: string;
   error_count: number;
+  send_count: number;
   position_left: number;
   position_top: number;
 };

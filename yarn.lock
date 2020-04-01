@@ -1940,6 +1940,18 @@ adjust-sourcemap-loader@2.0.0:
     object-path "0.11.4"
     regex-parser "2.2.10"
 
+ag-grid-community@^23.0.2:
+  version "23.0.2"
+  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-23.0.2.tgz#81fc92ce9e47c75e854337a1e2d8ef950c3a1d51"
+  integrity sha512-UaD4lEVKKVCA2rrgMJJV328sCp5rdR9hgOh6oMUpZRXCke/3m/r2odjGjzvfT7yeLClj6ZdZuCkM4NmEuCZ8KA==
+
+ag-grid-react@^23.0.2:
+  version "23.0.2"
+  resolved "https://registry.yarnpkg.com/ag-grid-react/-/ag-grid-react-23.0.2.tgz#5b584c1d7dffd13e7aa97228e21bf2b1558e75a1"
+  integrity sha512-cE5Z5gPL9AKZfOfKhtmA5RlUU1v+an+OtJneemWdWTADQdYyrvy7CK4PMwAN4/gfye2efE94d2jo1HYRp1i2yw==
+  dependencies:
+    prop-types "^15.6.2"
+
 aggregate-error@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/aggregate-error/-/aggregate-error-3.0.1.tgz#db2fe7246e536f40d9b5442a39e117d7dd6a24e0"
@@ -9148,6 +9160,13 @@ react-spinners@^0.8.0:
   dependencies:
     "@emotion/core" "^10.0.15"
 
+react-to-print@^2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/react-to-print/-/react-to-print-2.6.3.tgz#a32c85099babdcc6d597546772fc3d6703b0e230"
+  integrity sha512-+4NNaO5E0DaFOgPAR5mm8uT0lS45w6Wzfq8dSJicvn6SghWwgI7/TKrrt59vasjtey8s5rBK6V3q4XPo08fTRA==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-transition-group@^2.5.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
@@ -10550,6 +10569,11 @@ text-table@0.2.0, text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
+
+three@^0.115.0:
+  version "0.115.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.115.0.tgz#540d800c381b9da2334c024f0fbe4d23f84eb05e"
+  integrity sha512-mAV2Ky3RdcbdSbR9capI+tKLvRldWYxd4151PZTT/o7+U2jh9Is3a4KmnYwzyUAhB2ZA3pXSgCd2DOY4Tj5kow==
 
 throat@^4.0.0:
   version "4.1.0"

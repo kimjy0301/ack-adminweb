@@ -1,6 +1,18 @@
 @tailwind base;
 @tailwind components;
 
+@media print {
+  #printBtn {
+    visibility: hidden;
+  }
+}
+@page {
+  size: auto; /* auto is the initial value */
+
+  /* this affects the margin in the printer settings */
+  margin: 15mm 20mm 15mm 20mm;
+}
+
 .border-section {
   @apply border-b border-gray-400 pb-8 mt-8 h-32 w-32;
 }
