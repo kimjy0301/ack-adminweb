@@ -16,20 +16,28 @@ import DeptSettingModal from "../modal/DeptSettingModal";
 import { Dept } from "../../modules/interfacePc";
 import { getDeptList } from "../../modules/api/StatusAPI";
 import { getEmrifCountByDept, EmrifCount } from "../../modules/api/StatsAPI";
+import Modal from "../modal/Modal";
+import { useDispatch } from "react-redux";
+import { addError } from "../../modules/error";
 
 function EmrifChartByDept() {
   const [startDate, setStartDate] = useState(new Date());
   const [viewModal, setViewModal] = useState(false);
   const [deptList, setDeptList] = useState<string[]>([]);
   const [data, setData] = useState<EmrifCount[]>();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getDeptList().then(response => {
-      let tempList: string[] = [];
-      response.map((value: Dept) => tempList.push(value.name));
-      setDeptList(tempList);
-    });
-  }, []);
+    getDeptList()
+      .then(response => {
+        let tempList: string[] = [];
+        response.map((value: Dept) => tempList.push(value.name));
+        setDeptList(tempList);
+      })
+      .catch(reason => {
+        dispatch(addError({ errorMsg: reason.message }));
+      });
+  }, [dispatch]);
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
@@ -90,11 +98,9 @@ function EmrifChartByDept() {
       </div>
       {viewModal && (
         <ModalPortal>
-          <DeptSettingModal
-            deptList={deptList}
-            onClickCancel={() => setViewModal(false)}
-            onClickConfirm={() => console.log("object")}
-          ></DeptSettingModal>
+          <Modal onClickCancel={() => setViewModal(false)}>
+            <DeptSettingModal deptList={deptList}></DeptSettingModal>
+          </Modal>
         </ModalPortal>
       )}
     </>

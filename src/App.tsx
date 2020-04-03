@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./modules";
 import { logout, UserState, setuser } from "./modules/user";
 import ScrollTop from "./lib/ScrollTop.jsx";
+import ModalPortal from "./components/modal/ModalPortal";
+import ErrorModal from "./components/modal/ErrorModal";
 const App = () => {
   const dispatch = useDispatch();
 
@@ -76,6 +78,9 @@ const App = () => {
           </ScrollTop>
         </div>
       </Router>
+      <ModalPortal>
+        <ErrorModal></ErrorModal>
+      </ModalPortal>
     </>
   );
 };

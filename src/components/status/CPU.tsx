@@ -9,7 +9,7 @@ type CpuType = {
 
 function CPU(props: CpuType) {
   return (
-    <div className="bg-white rounded-md shadow-lg mt-10 w-20rem">
+    <div className="bg-white rounded-md shadow-lg mt-3 w-1/4">
       <div className="flex justify-between">
         <div className="w-20 h-20 bg-green-400 relative top-30 left-20 flex justify-center items-center shadow-lg rounded">
           <FontAwesomeIcon icon="microchip" className="text-white" size="2x" />

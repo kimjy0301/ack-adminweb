@@ -2,28 +2,34 @@ import React, { useEffect, useState } from "react";
 import { EmrifCount, getEmrifCountByWeek } from "../../modules/api/StatsAPI";
 import weekCount from "../../lib/weekCount";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch } from "react-redux";
+import { addError } from "../../modules/error";
 
 function EmrifChartByWeek() {
   const [weekData, setWeekData] = useState<EmrifCount>();
   const [lastWeekData, setLastWeekData] = useState<EmrifCount>();
   const today = new Date();
   const nowYear = today.getFullYear();
-
+  const dispatch = useDispatch();
   const week = weekCount(today);
   useEffect(() => {
     getEmrifCountByWeek(nowYear, week)
       .then(response => {
         setWeekData(response);
       })
-      .catch(response => {});
-  }, [nowYear, week]);
+      .catch(reason => {
+        dispatch(addError({ errorMsg: reason.message }));
+      });
+  }, [nowYear, week, dispatch]);
   useEffect(() => {
     getEmrifCountByWeek(nowYear, week - 1)
       .then(response => {
         setLastWeekData(response);
       })
-      .catch(response => {});
-  }, [nowYear, week]);
+      .catch(reason => {
+        dispatch(addError({ errorMsg: reason.message }));
+      });
+  }, [nowYear, week, dispatch]);
 
   let diff_send_count = 0;
   let diff_error_count = 0;
@@ -44,7 +50,7 @@ function EmrifChartByWeek() {
                 size="2x"
               />
             </span>
-            <span className="text-5xl">{weekData?.send_count}</span>
+            <span className="text-4xl">{weekData?.send_count}</span>
           </div>
           <div className="w-32">
             <span>
@@ -54,7 +60,7 @@ function EmrifChartByWeek() {
                 size="2x"
               />
             </span>
-            <span className="text-5xl">{weekData?.error_count}</span>
+            <span className="text-4xl">{weekData?.error_count}</span>
           </div>
         </div>
         <div className="border-b w-full mx-auto mt-5 mb-2"></div>

@@ -11,12 +11,14 @@ import {
   getInterfacePcList,
   setInterfacePcPosition
 } from "../api/InterfacePcAPI";
+import { addError } from "../error";
 
 function* getInterfacePcListSaga() {
   try {
     const interfacePcList: InterfacePcList = yield call(getInterfacePcList);
     yield put(getInterfacePcListAsync.success(interfacePcList));
   } catch (e) {
+    yield put(addError({ errorMsg: e.message }));
     yield put(getInterfacePcListAsync.failure(e));
   }
 }
@@ -35,7 +37,6 @@ function* setInterfacePcPositionSaga(
 
     yield put(setInterfacePcPositionAsync.success(interfacePcState));
   } catch (e) {
-    console.log(e);
     yield put(setInterfacePcPositionAsync.failure(e));
   }
 }

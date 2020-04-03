@@ -9,6 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import { setfloortimer } from "../../modules/user";
 import { InterfacePcPosition } from "../../modules/api/InterfacePcAPI";
+import Modal from "../modal/Modal";
 
 export type InterfacePcProps = {
   interfacePcState: InterfacePcState;
@@ -114,10 +115,11 @@ function InterfacePcSm(props: InterfacePcProps) {
         </div>
         {viewModal && (
           <ModalPortal>
-            <InterfacePcModal
-              onClickCancel={onClickCancel}
-              interfacePcState={props.interfacePcState}
-            ></InterfacePcModal>
+            <Modal onClickCancel={onClickCancel}>
+              <InterfacePcModal
+                interfacePcState={props.interfacePcState}
+              ></InterfacePcModal>
+            </Modal>
           </ModalPortal>
         )}
       </div>

@@ -3,6 +3,7 @@ import counter from "./counter";
 import user, { userSaga } from "./user";
 import github, { githubSaga } from "./github";
 import serverStatus, { serverStateSaga } from "./serverStatus";
+import error from "./error";
 import { all } from "redux-saga/effects";
 import interfacePcList, { interfacePcListSaga } from "./interfacePc";
 
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   github,
   user,
   serverStatus,
-  interfacePcList
+  interfacePcList,
+  error
 });
 
 export default rootReducer;

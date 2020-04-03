@@ -5,6 +5,7 @@ import InterfacePcModal from "../modal/InterfacePcModal";
 import { InterfacePcState } from "../../modules/interfacePc";
 import { useDispatch } from "react-redux";
 import { setfloortimer } from "../../modules/user";
+import Modal from "../modal/Modal";
 
 export type InterfacePcProps = {
   interfacePcState: InterfacePcState;
@@ -78,10 +79,11 @@ function InterfacePc(props: InterfacePcProps) {
       </div>
       {viewModal && (
         <ModalPortal>
-          <InterfacePcModal
-            onClickCancel={onClickCancel}
-            interfacePcState={props.interfacePcState}
-          ></InterfacePcModal>
+          <Modal onClickCancel={onClickCancel}>
+            <InterfacePcModal
+              interfacePcState={props.interfacePcState}
+            ></InterfacePcModal>
+          </Modal>
         </ModalPortal>
       )}
     </>
