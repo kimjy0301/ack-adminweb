@@ -10,11 +10,13 @@ import {
   ResponsiveContainer
 } from "recharts";
 import { getEmrifCountByYear, EmrifCount } from "../../../modules/api/StatsAPI";
+import { useDispatch } from "react-redux";
+import { addError } from "../../../modules/error";
 
 function EmrifChartByYear() {
   const [data, setdata] = useState<EmrifCount[]>();
   const [year, setYear] = useState(2020);
-  const [error, setError] = useState();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getEmrifCountByYear(year)
@@ -22,9 +24,9 @@ function EmrifChartByYear() {
         setdata(response);
       })
       .catch(response => {
-        setError(response);
+        dispatch(addError({ errorMsg: response.message }));
       });
-  }, [year]);
+  }, [year, dispatch]);
 
   const onSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setYear(+event.target.value.replace("년", ""));

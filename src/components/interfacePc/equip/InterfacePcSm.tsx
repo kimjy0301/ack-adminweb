@@ -9,6 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import { setfloortimer } from "../../../modules/user";
 import { InterfacePcPosition } from "../../../modules/api/InterfacePcAPI";
+import Modal from "../../modal/Modal";
 export type InterfacePcProps = {
   interfacePcState: InterfacePcState;
 };

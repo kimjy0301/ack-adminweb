@@ -869,6 +869,34 @@ video {
   transition: all 200ms;
 }
 
+.error-enter {
+  -webkit-transform: translate3d(500px, 0, 0);
+          transform: translate3d(500px, 0, 0);
+  opacity: 100 !important;
+}
+
+.error-enter-done {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  -webkit-transition: all 400ms;
+  transition: all 400ms;
+  opacity: 100 !important;
+}
+
+.error-exit {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  opacity: 100 !important;
+}
+
+.error-exit-done {
+  opacity: 100 !important;
+  -webkit-transform: translate3d(500px, 0, 0);
+          transform: translate3d(500px, 0, 0);
+  -webkit-transition: all 200ms;
+  transition: all 200ms;
+}
+
 .fade-enter {
   opacity: 0;
 }

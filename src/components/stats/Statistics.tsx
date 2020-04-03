@@ -8,6 +8,8 @@ import { InterfacePcState } from "../../modules/interfacePc";
 import { BeatLoader } from "react-spinners";
 import ReactDatePicker from "react-datepicker";
 import { getInterfacePcListWithDate } from "../../modules/api/InterfacePcAPI";
+import { useDispatch } from "react-redux";
+import { addError } from "../../modules/error";
 export type rowData = {
   dept: string;
   lab: string;
@@ -27,29 +29,34 @@ const Statistics = () => {
   const [endDate, setEndDate] = useState(new Date());
   const [rowDatas, setRowDatas] = useState<rowData[]>([]);
   const divRef = useRef<HTMLDivElement | null>(null);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     setIsLoading(true);
     getInterfacePcListWithDate(
       startDate.toISOString().substring(0, 10),
       endDate.toISOString().substring(0, 10)
-    ).then(response => {
-      setIsLoading(false);
-      const interfacePcList: InterfacePcState[] = response.results;
-      let tempRowDatas: rowData[] = [];
-      interfacePcList.map((interfacePcState: InterfacePcState) =>
-        tempRowDatas.push({
-          emrifpc: interfacePcState.ip,
-          dept: interfacePcState.equip.lab.dept.name,
-          error_count: interfacePcState.error_count,
-          send_count: interfacePcState.send_count,
-          lab: interfacePcState.equip.lab.name,
-          equip: interfacePcState.equip.name
-        })
-      );
-      setRowDatas(tempRowDatas);
-    });
-  }, [startDate, endDate]);
+    )
+      .then(response => {
+        setIsLoading(false);
+        const interfacePcList: InterfacePcState[] = response.results;
+        let tempRowDatas: rowData[] = [];
+        interfacePcList.map((interfacePcState: InterfacePcState) =>
+          tempRowDatas.push({
+            emrifpc: interfacePcState.ip,
+            dept: interfacePcState.equip.lab.dept.name,
+            error_count: interfacePcState.error_count,
+            send_count: interfacePcState.send_count,
+            lab: interfacePcState.equip.lab.name,
+            equip: interfacePcState.equip.name
+          })
+        );
+        setRowDatas(tempRowDatas);
+      })
+      .catch(response => {
+        setIsLoading(false);
+        dispatch(addError({ errorMsg: response.message }));
+      });
+  }, [startDate, endDate, dispatch]);
 
   const data = {
     rowSelection: "single",

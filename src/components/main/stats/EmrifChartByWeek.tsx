@@ -3,7 +3,7 @@ import { EmrifCount, getEmrifCountByWeek } from "../../../modules/api/StatsAPI";
 import weekCount from "../../../lib/weekCount";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
-import { addError } from "../../modules/error";
+import { addError } from "../../../modules/error";
 
 function EmrifChartByWeek() {
   const [weekData, setWeekData] = useState<EmrifCount>();
