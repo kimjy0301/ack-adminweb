@@ -74,7 +74,6 @@ function EmrifChartByYear() {
               />
             </LineChart>
           </ResponsiveContainer>
-          {error}
         </div>
       </div>
     </>

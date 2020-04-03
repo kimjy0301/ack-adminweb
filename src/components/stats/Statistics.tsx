@@ -8,12 +8,11 @@ import { InterfacePcState } from "../../modules/interfacePc";
 import { BeatLoader } from "react-spinners";
 import ReactDatePicker from "react-datepicker";
 import { getInterfacePcListWithDate } from "../../modules/api/InterfacePcAPI";
-import ReactToPrint from "react-to-print";
-
 export type rowData = {
   dept: string;
   lab: string;
   emrifpc: string;
+  equip: string;
   send_count: number;
   error_count: number;
 };
@@ -44,7 +43,8 @@ const Statistics = () => {
           dept: interfacePcState.equip.lab.dept.name,
           error_count: interfacePcState.error_count,
           send_count: interfacePcState.send_count,
-          lab: interfacePcState.equip.lab.name
+          lab: interfacePcState.equip.lab.name,
+          equip: interfacePcState.equip.name
         })
       );
       setRowDatas(tempRowDatas);
@@ -57,6 +57,7 @@ const Statistics = () => {
       { headerName: "부서", field: "dept", sortable: true, filter: true },
       { headerName: "검사실", field: "lab", sortable: true, filter: true },
       { headerName: "PC", field: "emrifpc", sortable: true, filter: true },
+      { headerName: "장비명", field: "equip", sortable: true, filter: true },
       {
         headerName: "전송건수",
         field: "send_count",
@@ -115,8 +116,12 @@ const Statistics = () => {
           </div>
         ) : (
           <>
-            <div className="flex flex-col bg-white p-10 mt-8 justify-center items-center shadow-2xl h-auto relative">
-              <div className="flex items-center mb-5">
+            <div className="flex flex-col bg-white p-10 mt-8 justify-center items-center h-auto relative">
+              <div className="text-2xl bg-white px-3">EMR I/F 통계</div>
+              <div className="flex items-center mt-10">
+                <div>
+                  <span className="mr-5 text-2xl">조회일자</span>
+                </div>
                 <div>
                   <ReactDatePicker
                     className="text-2xl w-56 text-center focus:outline-none focus:border-teal-400 border shadow rounded relative"
@@ -164,7 +169,7 @@ const Statistics = () => {
               </div>
               <div
                 ref={divRef}
-                className="ag-theme-balham bg-white shadow-xl text-base"
+                className="ag-theme-balham bg-white text-base"
                 style={{ height: "40rem", width: "60rem", marginTop: "30px" }}
               >
                 <AgGridReact
