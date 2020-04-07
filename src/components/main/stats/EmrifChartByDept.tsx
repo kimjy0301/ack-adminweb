@@ -7,7 +7,7 @@ import {
   Legend,
   ResponsiveContainer,
   BarChart,
-  Bar
+  Bar,
 } from "recharts";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -19,7 +19,12 @@ import { getEmrifCountByDept, EmrifCount } from "../../../modules/api/StatsAPI";
 import Modal from "../../modal/Modal";
 import { useDispatch } from "react-redux";
 import { addError } from "../../../modules/error";
+
+import { registerLocale } from "react-datepicker";
+import ko from "date-fns/locale/ko";
+
 function EmrifChartByDept() {
+  registerLocale("ko", ko);
   const [startDate, setStartDate] = useState(new Date());
   const [viewModal, setViewModal] = useState(false);
   const [deptList, setDeptList] = useState<string[]>([]);
@@ -28,12 +33,12 @@ function EmrifChartByDept() {
 
   useEffect(() => {
     getDeptList()
-      .then(response => {
+      .then((response) => {
         let tempList: string[] = [];
         response.map((value: Dept) => tempList.push(value.name));
         setDeptList(tempList);
       })
-      .catch(reason => {
+      .catch((reason) => {
         dispatch(addError({ errorMsg: reason.message }));
       });
   }, [dispatch]);
@@ -48,7 +53,7 @@ function EmrifChartByDept() {
       startDate.getFullYear(),
       startDate.getMonth() + 1,
       deptList
-    ).then(response => {
+    ).then((response) => {
       setData(response);
     });
   }, [deptList, startDate]);
@@ -59,9 +64,10 @@ function EmrifChartByDept() {
         <div className="flex justify-between">
           <div>
             <ReactDatePicker
+              locale="ko"
               className="text-2xl w-40 text-center focus:outline-none focus:border-teal-400 border shadow rounded"
               selected={startDate}
-              onChange={date => {
+              onChange={(date) => {
                 if (date) {
                   setStartDate(date);
                 }
