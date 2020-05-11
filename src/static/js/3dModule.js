@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import * as THREE from "three";
 import { WEBGL } from "three/examples/jsm/WebGL";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -69,7 +70,7 @@ export function init() {
   window.addEventListener("resize", onWindowResize, false);
 
   manager = new THREE.LoadingManager();
-  manager.onStart = function(url, itemsLoaded, itemsTotal) {
+  manager.onStart = function (url, itemsLoaded, itemsTotal) {
     console.log(
       "Started loading file: " +
         url +
@@ -82,12 +83,12 @@ export function init() {
     isLoading = true;
   };
 
-  manager.onLoad = function() {
+  manager.onLoad = function () {
     console.log("Loading complete!");
     isLoading = false;
   };
 
-  manager.onProgress = function(url, itemsLoaded, itemsTotal) {
+  manager.onProgress = function (url, itemsLoaded, itemsTotal) {
     console.log(
       "Loading file: " +
         url +
@@ -99,7 +100,7 @@ export function init() {
     );
   };
 
-  manager.onError = function(url) {
+  manager.onError = function (url) {
     console.log("There was an error loading " + url);
   };
 
@@ -196,12 +197,12 @@ function onWindowResize() {
 function MonitorGLTFLoad(url) {
   let roughnessMipmapper = new RoughnessMipmapper(renderer);
   gltfLoader = new GLTFLoader(manager);
-  gltfLoader.load(url, gltf => onSuccess(gltf));
+  gltfLoader.load(url, (gltf) => onSuccess(gltf));
 
   roughnessMipmapper.dispose();
 
   function onSuccess(gltf) {
-    gltf.scene.traverse(function(node) {
+    gltf.scene.traverse(function (node) {
       if (node.isMesh) {
         node.castShadow = true;
         roughnessMipmapper.generateMipmaps(node.material);
@@ -220,12 +221,12 @@ function MonitorGLTFLoad(url) {
 function FloorGLTFLoad(url) {
   let roughnessMipmapper = new RoughnessMipmapper(renderer);
   gltfLoader = new GLTFLoader(manager);
-  gltfLoader.load(url, gltf => onSuccess(gltf));
+  gltfLoader.load(url, (gltf) => onSuccess(gltf));
 
   roughnessMipmapper.dispose();
 
   function onSuccess(gltf) {
-    gltf.scene.traverse(function(node) {
+    gltf.scene.traverse(function (node) {
       if (node.isMesh) {
         node.receiveShadow = true;
         roughnessMipmapper.generateMipmaps(node.material);

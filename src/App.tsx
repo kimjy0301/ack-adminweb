@@ -54,13 +54,13 @@ const App = () => {
               >
                 인터페이스 PC
               </Link>
-              <Link
+              {/* <Link
                 type="button"
                 to="/3dlist"
                 className="focus:outline-none w-auto mx-2 h-16 text-white text-xl  p-3 text-center border-b-4 border-transparent hover:border-gray-200 duration-150 transition-all "
               >
                 3D List
-              </Link>
+              </Link> */}
               <Link
                 type="button"
                 to="/stat"

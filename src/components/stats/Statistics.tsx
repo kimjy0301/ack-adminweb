@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
 import { ColumnApi, GridApi } from "ag-grid-community";
-
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
 import { InterfacePcState } from "../../modules/interfacePc";
@@ -12,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { addError } from "../../modules/error";
 import { registerLocale } from "react-datepicker";
 import ko from "date-fns/locale/ko";
+
 export type rowData = {
   dept: string;
   lab: string;
@@ -208,7 +208,7 @@ const Statistics = () => {
                 onGridReady={onGridReady}
                 suppressCsvExport={true}
                 rowSelection={data.rowSelection}
-                animateRows={true}
+                animateRows={false}
                 multiSortKey={"ctrl"}
               ></AgGridReact>
             )}

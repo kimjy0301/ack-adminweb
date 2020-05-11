@@ -5,7 +5,7 @@ import {
   LOGIN_ERROR,
   LOGOUT,
   SET_USER,
-  SET_FLOORTIMER
+  SET_FLOORTIMER,
 } from "./actions";
 import { UserState, LoginAction } from "./types";
 
@@ -17,21 +17,21 @@ const initialState: UserState = {
   id: 0,
   error: undefined,
   errorMsg: undefined,
-  floorTimer: false
+  floorTimer: false,
 };
 
 const userReducer = createReducer<UserState, LoginAction>(initialState, {
-  [LOGIN]: state => ({
+  [LOGIN]: (state) => ({
     ...state,
     isLogin: false,
-    isLoading: true
+    isLoading: true,
   }),
-  [LOGOUT]: state => ({
+  [LOGOUT]: (state) => ({
     ...state,
     isLogin: false,
     isLoading: false,
     id: 0,
-    token: ""
+    token: "",
   }),
   [LOGIN_SUCCESS]: (state, action) => ({
     ...state,
@@ -40,20 +40,20 @@ const userReducer = createReducer<UserState, LoginAction>(initialState, {
     id: action.payload.id,
     token: action.payload.token,
     error: "",
-    errorMsg: ""
+    errorMsg: "",
   }),
   [LOGIN_ERROR]: (state, action) => ({
     ...state,
     isLogin: false,
     isLoading: false,
     error: action.payload.message,
-    errorMsg: action.payload.response?.data
+    errorMsg: action.payload.response?.data,
   }),
   [SET_USER]: (state, action) => (state = action.payload),
   [SET_FLOORTIMER]: (state, action) => ({
     ...state,
-    floorTimer: action.payload
-  })
+    floorTimer: action.payload,
+  }),
 });
 
 export default userReducer;

@@ -43,7 +43,7 @@ const Main = () => {
       ) : (
         <Redirect
           to={{
-            pathname: "/login"
+            pathname: "/login",
           }}
         ></Redirect>
       )}

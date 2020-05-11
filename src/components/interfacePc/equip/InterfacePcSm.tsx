@@ -4,7 +4,7 @@ import ModalPortal from "../../modal/ModalPortal";
 import InterfacePcModal from "../../modal/InterfacePcModal";
 import {
   InterfacePcState,
-  setInterfacePcPositionAsync
+  setInterfacePcPositionAsync,
 } from "../../../modules/interfacePc";
 import { useDispatch } from "react-redux";
 import { setfloortimer } from "../../../modules/user";
@@ -56,7 +56,7 @@ function InterfacePcSm(props: InterfacePcProps) {
       const interfacePcPosition: InterfacePcPosition = {
         id: props.interfacePcState.id,
         position_left: left + newX - oldX,
-        position_top: top + newY - oldY
+        position_top: top + newY - oldY,
       };
       dispatch(setInterfacePcPositionAsync.request(interfacePcPosition));
     }
