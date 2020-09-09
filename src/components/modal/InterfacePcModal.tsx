@@ -1,7 +1,7 @@
 import React from "react";
 import { InterfacePcState } from "../../modules/interfacePc";
 export type InterfacePcModalType = {
-  interfacePcState: InterfacePcState;
+  interfacePcState: InterfacePcState | undefined;
 };
 
 const InterfacePcModal = ({ interfacePcState }: InterfacePcModalType) => {

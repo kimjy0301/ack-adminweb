@@ -30,7 +30,7 @@ function InterfacePc(props: InterfacePcProps) {
   };
   const onClickCancel = (e: React.MouseEvent) => {
     setViewModal(false);
-    dispatch(setfloortimer(true));
+    // dispatch(setfloortimer(true));
   };
   return (
     <>

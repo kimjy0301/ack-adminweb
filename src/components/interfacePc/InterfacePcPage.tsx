@@ -20,6 +20,7 @@ import {
   InterfacePcState
 } from "../../modules/interfacePc";
 import List3D from "../3dList/List3D";
+import GridPcList from "./equip/GridPcList";
 
 let urlList: string[] = [];
 
@@ -91,7 +92,7 @@ const InterfacePcPage = () => {
     let timer: any;
     if (enableTimeout) {
       timer = setTimeout(() => {
-        history.push(pushPath);
+        //history.push(pushPath);
       }, 10000);
     }
     return () => {
@@ -114,7 +115,7 @@ const InterfacePcPage = () => {
     <>
       <div
         ref={divRef}
-        className="flex mt-20 w-full transition transition-all duration-700 opacity-0"
+        className="flex mt-20 w-full transition duration-700 opacity-0"
       >
         <CSSTransition in={folded} timeout={1} classNames="sidebar">
           <div
@@ -134,24 +135,36 @@ const InterfacePcPage = () => {
               className={`text-center mt-10 text-xl w-full py-2 hover:border border-0 self-center ${location.pathname.match(
                 "allpc"
               ) &&
-                "bg-teal-400 text-white shadow-xl"} transition-all transition duration-200 button-scale `}
+                "bg-teal-400 text-white shadow-xl"} transition duration-200 button-scale `}
               to={`${url}/allpc`}
             >
               전체리스트
             </Link>
-            {distinctList.map((value: string, i) => (
+            <Link
+              type="button"
+              className={`text-center mt-10 text-xl w-full py-2 hover:border border-0 self-center ${location.pathname.match(
+                "gridpclist"
+              ) &&
+                "bg-teal-400 text-white shadow-xl"} transition duration-200 button-scale `}
+              to={`${url}/gridpclist`}
+            >
+              DataGrid 리스트
+            </Link>
+
+            
+            {/* {distinctList.map((value: string, i) => (
               <Link
                 key={i}
                 type="button"
                 className={`text-center mt-6 text-xl w-full py-2 hover:border border-0 self-center ${location.pathname.match(
                   `floor/${value}`
                 ) &&
-                  "bg-teal-400 text-white shadow-xl"} transition-all transition duration-200 button-scale `}
+                  "bg-teal-400 text-white shadow-xl"} transition duration-200 button-scale `}
                 to={`${url}/floor/${value}`}
               >
                 {value}
               </Link>
-            ))}
+            ))} */}
 
             <button
               onClick={onClickFolded}
@@ -197,6 +210,9 @@ const InterfacePcPage = () => {
                         </Route>
                         <Route path={`${path}/allpc`}>
                           <AllPc></AllPc>
+                        </Route>
+                        <Route path={`${path}/gridpclist`}>
+                          <GridPcList></GridPcList>
                         </Route>
                         <Route path={`${path}/3dlist`}>
                           <List3D></List3D>
