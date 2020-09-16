@@ -12,6 +12,7 @@ import InterfacePcModal from '../../modal/InterfacePcModal';
 
 type rowData = {
   id: number;
+  status: string;
   dept: string;
   lab: string;
   emrifpc: string;
@@ -67,14 +68,14 @@ const GridPcList = () => {
 
       if (deptInput === "") {
         interfacePcList.map((value: InterfacePcState) =>
-          tempRowDatas.push({ id: value.id, equip: value.equip.name, dept: value.equip.lab.dept.name, lab: value.equip.lab.name, emrifpc: value.ip, send_count: value.send_count, error_count: value.error_count })
+          tempRowDatas.push({ id: value.id, status: value.status, equip: value.equip.name, dept: value.equip.lab.dept.name, lab: value.equip.lab.name, emrifpc: value.ip, send_count: value.send_count, error_count: value.error_count })
         )
       } else {
         interfacePcList
           .filter((interfacePc: InterfacePcState) =>
             filterCondition(interfacePc, deptInput)
           ).map((value: InterfacePcState) =>
-            tempRowDatas.push({ id: value.id, equip: value.equip.name, dept: value.equip.lab.dept.name, lab: value.equip.lab.name, emrifpc: value.ip, send_count: value.send_count, error_count: value.error_count })
+            tempRowDatas.push({ id: value.id, status: value.status, equip: value.equip.name, dept: value.equip.lab.dept.name, lab: value.equip.lab.name, emrifpc: value.ip, send_count: value.send_count, error_count: value.error_count })
           )
       }
       setRowDatas(tempRowDatas);
@@ -92,6 +93,7 @@ const GridPcList = () => {
       { headerName: "검사실", field: "lab", sortable: true, filter: true },
       { headerName: "PC", field: "emrifpc", sortable: true, filter: true },
       { headerName: "장비명", field: "equip", sortable: true, filter: true },
+      { headerName: "상태", field: "status", sortable: true, filter: true },
       {
         headerName: "전송건수",
         field: "send_count",

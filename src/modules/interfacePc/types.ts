@@ -45,4 +45,22 @@ export type InterfacePcList = {
   isLoading: boolean;
 };
 
+export type InterfaceError = {
+  id: number;
+  emrifpc: InterfacePcState;
+  title: string;
+  content: string;
+  state_flag: string;
+}
+
+export type InterfaceErrorList = {
+  count: number;
+  next: string;
+  previous?: any;
+  results: InterfaceError[];
+}
+
 export type InterfacePcAction = ActionType<typeof actions>;
+
+
+
