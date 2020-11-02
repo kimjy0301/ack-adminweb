@@ -51,6 +51,7 @@ export type InterfaceError = {
   title: string;
   content: string;
   state_flag: string;
+  created: Date;
 }
 
 export type InterfaceErrorList = {
