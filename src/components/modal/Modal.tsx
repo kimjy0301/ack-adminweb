@@ -21,7 +21,7 @@ const Modal = ({ onClickCancel, children }: ModalType) => {
   return (
     <div
       ref={divRef}
-      className="bg-modal w-full flex items-center justify-center fixed h-screen w-screen left-0 top-0"
+      className="bg-modal flex items-center justify-center fixed h-screen w-screen left-0 top-0"
       onClick={onClickCancel}
       onTouchStart={onClickCancel}
     >

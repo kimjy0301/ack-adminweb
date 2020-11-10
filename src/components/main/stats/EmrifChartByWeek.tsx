@@ -14,19 +14,19 @@ function EmrifChartByWeek() {
   const week = weekCount(today);
   useEffect(() => {
     getEmrifCountByWeek(nowYear, week)
-      .then(response => {
+      .then((response) => {
         setWeekData(response);
       })
-      .catch(reason => {
+      .catch((reason) => {
         dispatch(addError({ errorMsg: reason.message }));
       });
   }, [nowYear, week, dispatch]);
   useEffect(() => {
     getEmrifCountByWeek(nowYear, week - 1)
-      .then(response => {
+      .then((response) => {
         setLastWeekData(response);
       })
-      .catch(reason => {
+      .catch((reason) => {
         dispatch(addError({ errorMsg: reason.message }));
       });
   }, [nowYear, week, dispatch]);
@@ -39,7 +39,7 @@ function EmrifChartByWeek() {
   }
   return (
     <>
-      <div className="flex flex-col flex-wrap justify-center bg-white p-3 rounded-md shadow-lg my-5 text-2xl relative p-5 w-56">
+      <div className="flex flex-col flex-wrap justify-center bg-white rounded-md shadow-lg my-5 text-2xl relative p-5 w-56">
         <div className="my-3 text-center">이번주 전송건수</div>
         <div className="flex flex-col items-center">
           <div className="w-32">

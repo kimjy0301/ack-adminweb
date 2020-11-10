@@ -951,6 +951,17 @@ video {
   top: -13px;
 }
 
+th,
+td {
+  border-width: 1px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.bg-error {
+  background-color: #fc8181 !important;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

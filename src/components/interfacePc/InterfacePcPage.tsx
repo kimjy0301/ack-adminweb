@@ -6,7 +6,7 @@ import {
   Switch,
   Route,
   useLocation,
-  useHistory
+  useHistory,
 } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -17,7 +17,7 @@ import { RootState } from "../../modules";
 import { setfloortimer } from "../../modules/user";
 import {
   getInterfacePcListAsync,
-  InterfacePcState
+  InterfacePcState,
 } from "../../modules/interfacePc";
 import List3D from "../3dList/List3D";
 import GridPcList from "./equip/GridPcList";
@@ -60,7 +60,7 @@ const InterfacePcPage = () => {
         return 0;
       }
     });
-  distinctList.map(value => urlList.push(`/interfacepc/floor/${value}/`));
+  distinctList.map((value) => urlList.push(`/interfacepc/floor/${value}/`));
 
   const onClickFolded = () => {
     setFolded(!folded);
@@ -119,8 +119,9 @@ const InterfacePcPage = () => {
       >
         <CSSTransition in={folded} timeout={1} classNames="sidebar">
           <div
-            className={`z-50 bg-white shadow-md h-full pb-10 flex flex-col text-gray-700 w-1/6 ${!folded &&
-              "sidebar-exit-done"} overflow-hidden`}
+            className={`z-50 bg-white shadow-md h-full pb-10 flex flex-col text-gray-700 w-1/6 ${
+              !folded && "sidebar-exit-done"
+            } overflow-hidden`}
           >
             <button
               onClick={onClickClearTimeout}
@@ -130,28 +131,26 @@ const InterfacePcPage = () => {
             >
               <FontAwesomeIcon icon="history" className="" size="2x" />
             </button>
-            <Link
+            {/* <Link
               type="button"
-              className={`text-center mt-10 text-xl w-full py-2 hover:border border-0 self-center ${location.pathname.match(
-                "allpc"
-              ) &&
-                "bg-teal-400 text-white shadow-xl"} transition duration-200 button-scale `}
+              className={`text-center mt-10 text-xl w-full py-2 hover:border border-0 self-center ${
+                location.pathname.match("allpc") &&
+                "bg-teal-400 text-white shadow-xl"
+              } transition duration-200 button-scale `}
               to={`${url}/allpc`}
             >
               전체리스트
-            </Link>
+            </Link> */}
             <Link
               type="button"
-              className={`text-center mt-10 text-xl w-full py-2 hover:border border-0 self-center ${location.pathname.match(
-                "gridpclist"
-              ) &&
-                "bg-teal-400 text-white shadow-xl"} transition duration-200 button-scale `}
+              className={`text-center mt-10 text-xl w-full py-2 hover:border border-0 self-center 
+                bg-teal-400 text-white shadow-xl
+              transition duration-200 button-scale `}
               to={`${url}/gridpclist`}
             >
               DataGrid 리스트
             </Link>
 
-            
             {/* {distinctList.map((value: string, i) => (
               <Link
                 key={i}
@@ -206,7 +205,7 @@ const InterfacePcPage = () => {
                     <ScrollTop>
                       <Switch>
                         <Route exact path={path}>
-                          <AllPc></AllPc>
+                          <GridPcList></GridPcList>
                         </Route>
                         <Route path={`${path}/allpc`}>
                           <AllPc></AllPc>

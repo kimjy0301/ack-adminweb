@@ -80,7 +80,7 @@ function EmrifChartByDept() {
           <div>
             <button
               onClick={onClick}
-              className="bg-teal-400 text-white px-3 py-1 rounded shadow text-2xl focus:outline-none button-scale"
+              className="hidden bg-teal-400 text-white px-3 py-1 rounded shadow text-2xl focus:outline-none button-scale"
             >
               부서설정
             </button>
