@@ -97,7 +97,7 @@ function EmrifChartByDept() {
             <Tooltip />
             <Legend />
             <Bar dataKey="send_count" name="전송성공" fill="#68d391" />
-            <Bar dataKey="error_count" name="전송실패" fill="#fc8181" />
+            <Bar dataKey="error_count" name="에러건수" fill="#fc8181" />
           </BarChart>
         </ResponsiveContainer>
       </div>

@@ -41,12 +41,12 @@ const Main = () => {
           </div>
         </div>
       ) : (
-        <Redirect
-          to={{
-            pathname: "/login",
-          }}
-        ></Redirect>
-      )}
+          <Redirect
+            to={{
+              pathname: "/login",
+            }}
+          ></Redirect>
+        )}
     </>
   );
 };

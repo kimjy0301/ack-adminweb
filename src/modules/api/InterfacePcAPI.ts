@@ -69,11 +69,11 @@ export async function deleteAllInterfacePcError(
 }
 export async function putInterfacePcError(
   id: number | undefined,
-  stateflag : string,
+  stateflag: string,
 ) {
 
 
-  const data = {state_flag: stateflag};
+  const data = { state_flag: stateflag };
 
   const token = localStorage.getItem("jwt_token");
   const response = await axios.put<InterfaceError>(

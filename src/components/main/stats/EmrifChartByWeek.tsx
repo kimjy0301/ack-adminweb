@@ -42,7 +42,7 @@ function EmrifChartByWeek() {
       <div className="flex flex-col flex-wrap justify-center bg-white rounded-md shadow-lg my-5 text-2xl relative p-5 w-56">
         <div className="my-3 text-center">이번주 전송건수</div>
         <div className="flex flex-col items-center">
-          <div className="w-32">
+          <div className="w-48 flex justify-center">
             <span>
               <FontAwesomeIcon
                 icon="check-circle"
@@ -52,7 +52,7 @@ function EmrifChartByWeek() {
             </span>
             <span className="text-4xl">{weekData?.send_count}</span>
           </div>
-          <div className="w-32">
+          <div className="w-48 flex justify-center">
             <span>
               <FontAwesomeIcon
                 icon="times-circle"
@@ -67,18 +67,16 @@ function EmrifChartByWeek() {
         <div className="flex flex-col items-center justify-center">
           <span className="text-xl">지난주 대비</span>
           <span
-            className={`${
-              diff_send_count >= 0 ? "text-green-600" : "text-red-600"
-            }`}
+            className={`${diff_send_count >= 0 ? "text-green-600" : "text-red-600"
+              }`}
           >
-            {diff_send_count}
+            {diff_send_count >= 0 ? "+" + diff_send_count.toString() : "-" + diff_send_count.toString()}
           </span>
           <span
-            className={`${
-              diff_error_count >= 0 ? "text-green-600" : "text-red-600"
-            }`}
+            className={`${diff_error_count <= 0 ? "text-green-600" : "text-red-600"
+              }`}
           >
-            {diff_error_count}
+            {diff_error_count >= 0 ? "+" + diff_error_count.toString() : "-" + diff_error_count.toString()}
           </span>
         </div>
       </div>

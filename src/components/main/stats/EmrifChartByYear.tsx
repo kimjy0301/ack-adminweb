@@ -66,13 +66,13 @@ function EmrifChartByYear() {
                 type="monotone"
                 dataKey="send_count"
                 name="전송성공"
-                stroke="#8884d8"
+                stroke="#68d391"
               />
               <Line
                 type="monotone"
                 dataKey="error_count"
-                name="전송실패"
-                stroke="#82ca9d"
+                name="에러건수"
+                stroke="#fc8181"
               />
             </LineChart>
           </ResponsiveContainer>

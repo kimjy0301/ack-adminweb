@@ -93,97 +93,97 @@ const InterfacePcModal = ({ interfacePcState }: InterfacePcModalType) => {
           ></BeatLoader>
         </div>
       ) : (
-        <>
-          {errorList?.length !== undefined && errorList?.length > 0 && (
-            <div className="overflow-y-scroll h-64">
-              <table className="border m-2 border-collapse ">
-                <thead>
-                  <tr>
-                    <th>제목</th>
-                    <th>내용</th>
-                    <th>상태</th>
-                    <th>생성시간</th>
-                    <th>Check</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {errorList?.map((value: InterfaceError, id) => {
-                    return (
-                      <Fragment key={id}>
-                        <tr>
-                          <td>{value.title}</td>
-                          <td className="w-48">{value.content}</td>
-                          <td>
-                            {value.state_flag === "O" ? "처리완료" : "미처리"}
-                          </td>
-                          <td>{value.created}</td>
-                          <td>
-                            {value.state_flag === "L" ? (
-                              <button
-                                onClick={() =>
-                                  putInterfacePcError(value.id, "O")
-                                    .then((response) => {
-                                      setIsLoading(true);
-                                      getInterfacePcError(interfacePcState?.id)
-                                        .then((response) => {
-                                          setIsLoading(false);
-                                          const interfaceError: InterfaceError[] =
-                                            response.results;
-                                          setErrorList(interfaceError);
-                                        })
-                                        .catch((response) => {
-                                          setIsLoading(false);
-                                          dispatch(
-                                            addError({
-                                              errorMsg: response.message,
+          <>
+            {errorList?.length !== undefined && errorList?.length > 0 && (
+              <div className="overflow-y-scroll" style={{ height: "20rem" }}>
+                <table className="border m-2 border-collapse ">
+                  <thead>
+                    <tr>
+                      <th>제목</th>
+                      <th>내용</th>
+                      <th>상태</th>
+                      <th>생성시간</th>
+                      <th>Check</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {errorList?.map((value: InterfaceError, id) => {
+                      return (
+                        <Fragment key={id}>
+                          <tr>
+                            <td>{value.title}</td>
+                            <td className="w-48">{value.content}</td>
+                            <td>
+                              {value.state_flag === "O" ? "처리완료" : "미처리"}
+                            </td>
+                            <td>{value.created}</td>
+                            <td>
+                              {value.state_flag === "L" ? (
+                                <button
+                                  onClick={() =>
+                                    putInterfacePcError(value.id, "O")
+                                      .then((response) => {
+                                        setIsLoading(true);
+                                        getInterfacePcError(interfacePcState?.id)
+                                          .then((response) => {
+                                            setIsLoading(false);
+                                            const interfaceError: InterfaceError[] =
+                                              response.results;
+                                            setErrorList(interfaceError);
+                                          })
+                                          .catch((response) => {
+                                            setIsLoading(false);
+                                            dispatch(
+                                              addError({
+                                                errorMsg: response.message,
+                                              })
+                                            );
+                                          });
+                                      })
+                                      .then(() => setRefreshFlag(true))
+                                  }
+                                >
+                                  Check
+                                </button>
+                              ) : (
+                                  <button
+                                    onClick={() =>
+                                      putInterfacePcError(value.id, "L").then(
+                                        (response) => {
+                                          setIsLoading(true);
+                                          getInterfacePcError(interfacePcState?.id)
+                                            .then((response) => {
+                                              setIsLoading(false);
+                                              const interfaceError: InterfaceError[] =
+                                                response.results;
+                                              setErrorList(interfaceError);
                                             })
-                                          );
-                                        });
-                                    })
-                                    .then(() => setRefreshFlag(true))
-                                }
-                              >
-                                Check
-                              </button>
-                            ) : (
-                              <button
-                                onClick={() =>
-                                  putInterfacePcError(value.id, "L").then(
-                                    (response) => {
-                                      setIsLoading(true);
-                                      getInterfacePcError(interfacePcState?.id)
-                                        .then((response) => {
-                                          setIsLoading(false);
-                                          const interfaceError: InterfaceError[] =
-                                            response.results;
-                                          setErrorList(interfaceError);
-                                        })
-                                        .catch((response) => {
-                                          setIsLoading(false);
-                                          dispatch(
-                                            addError({
-                                              errorMsg: response.message,
-                                            })
-                                          );
-                                        });
+                                            .catch((response) => {
+                                              setIsLoading(false);
+                                              dispatch(
+                                                addError({
+                                                  errorMsg: response.message,
+                                                })
+                                              );
+                                            });
+                                        }
+                                      )
                                     }
-                                  )
-                                }
-                              >
-                                Uncheck
-                              </button>
-                            )}
-                          </td>
-                        </tr>
-                      </Fragment>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </>
-      )}
+                                  >
+                                    Uncheck
+                                  </button>
+                                )}
+                            </td>
+                          </tr>
+                        </Fragment>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </>
+        )}
     </>
   );
 };

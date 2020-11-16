@@ -93,9 +93,9 @@ const App = () => {
               <Route path="/3dlist">
                 <List3D />
               </Route>
-              <Route path="/stat">
+              <PrivateRoute path="/stat">
                 <Statistics />
-              </Route>
+              </PrivateRoute>
               <PrivateRoute path="/interfacepc">
                 <Equip />
               </PrivateRoute>

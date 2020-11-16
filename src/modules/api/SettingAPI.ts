@@ -1,2 +1,2 @@
-export const APIURL = "http://localhost:8000/api/v1";
-export const APIURL1 = "http://10.80.116.150:8000/api/v1";
+export const APIURL = "http://10.111.20.133:8080/api/v1";
+export const APIURL2 = "http://10.111.20.134:8080/api/v1";
