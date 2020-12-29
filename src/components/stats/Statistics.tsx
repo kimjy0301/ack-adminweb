@@ -125,10 +125,10 @@ const Statistics = () => {
   };
   return (
     <>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center w-full">
         <div
           ref={mainDivRef}
-          className="opacity-0 flex flex-col bg-white p-10 mt-8 justify-center items-center h-auto relative transition transition-opacity duration-700"
+          className="opacity-0 flex flex-col bg-white p-10 mt-8 justify-center items-center h-auto relative transition duration-700 w-full mx-12 border shadow-lg"
         >
           <div className="text-2xl bg-white px-3">EMR I/F 통계</div>
           <div className="flex items-center mt-10">
@@ -178,7 +178,7 @@ const Statistics = () => {
             <div>
               <button
                 id="printBtn"
-                className="bg-teal-400 text-white py-2 px-3 rounded absolute focus:outline-none hover:shadow-lg hover:bg-teal-500"
+                className="bg-navbar hover:bg-blue-600 text-white py-2 px-3 rounded absolute focus:outline-none hover:shadow-lg"
                 style={{ right: "10px", top: "10px" }}
                 onClick={onBtPrint}
               >
@@ -190,7 +190,7 @@ const Statistics = () => {
           <div
             ref={divRef}
             className="ag-theme-balham bg-white text-base"
-            style={{ height: "35rem", width: "60rem", marginTop: "30px" }}
+            style={{ height: "35rem", width: "100%", marginTop: "30px" }}
           >
             {isLoading ? (
               <div className="flex justify-center items-center mt-32">

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { APIURL } from "./SettingAPI";
+import { APIURL, APIURL2 } from "./SettingAPI";
 import { ServerStatusState } from "../serverStatus";
 import { Dept } from "../interfacePc";
 
@@ -17,6 +17,29 @@ export async function getServerStatus() {
       }
     }
   );
+
+  const response2 = await axios.get<ServerStatusState>(
+    `${APIURL2}/core/status/`,
+    {
+      headers: {
+        authorization: token,
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    }
+  );
+
+
+  response.data.cpu2 = response2.data.cpu
+  response.data.total_disk2 = response2.data.total_disk
+  response.data.free_disk2 = response2.data.free_disk
+  response.data.percent_disk2 = response2.data.percent_disk
+  response.data.used_disk2 = response2.data.used_disk
+  response.data.total_memory2 = response2.data.total_memory
+  response.data.free_memory2 = response2.data.free_memory
+  response.data.percent_memory2 = response2.data.percent_memory
+  response.data.used_memory2 = response2.data.used_memory 
+
   return response.data; // 데이터 값을 바로 반환하도록 처리합니다.
 }
 

@@ -24,6 +24,7 @@ export type Equip = {
   equip_company: string;
   equip_name: string;
   equip_number: string;
+  equip_os: string
 };
 
 export type InterfacePcState = {
@@ -35,6 +36,8 @@ export type InterfacePcState = {
   send_count: number;
   position_left: number;
   position_top: number;
+  employee_name: string;
+  employee_call: string;
 };
 
 export type InterfacePcList = {

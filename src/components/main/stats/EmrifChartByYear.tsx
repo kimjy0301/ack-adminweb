@@ -7,7 +7,7 @@ import {
   Tooltip,
   Legend,
   Line,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
 import { getEmrifCountByYear, EmrifCount } from "../../../modules/api/StatsAPI";
 import { useDispatch } from "react-redux";
@@ -20,10 +20,10 @@ function EmrifChartByYear() {
 
   useEffect(() => {
     getEmrifCountByYear(year)
-      .then(response => {
+      .then((response) => {
         setdata(response);
       })
-      .catch(response => {
+      .catch((response) => {
         dispatch(addError({ errorMsg: response.message }));
       });
   }, [year, dispatch]);
@@ -45,7 +45,7 @@ function EmrifChartByYear() {
       <div className="flex flex-wrap w-full justify-center">
         <div className="bg-white p-3 w-full rounded-md shadow-lg">
           <select
-            className="text-2xl w-40 text-center focus:outline-none focus:border-teal-400 border shadow rounded px-8"
+            className="text-xl w-40 text-center focus:outline-none focus:border-teal-400 border shadow rounded px-8"
             onChange={onSelect}
           >
             {yearList.map((value, i) => (
@@ -66,13 +66,13 @@ function EmrifChartByYear() {
                 type="monotone"
                 dataKey="send_count"
                 name="전송성공"
-                stroke="#68d391"
+                stroke="#2c5282"
               />
               <Line
                 type="monotone"
                 dataKey="error_count"
                 name="에러건수"
-                stroke="#fc8181"
+                stroke="#9b2c2c"
               />
             </LineChart>
           </ResponsiveContainer>

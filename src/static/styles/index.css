@@ -243,4 +243,10 @@ td {
   background-color: #fc8181 !important;
 }
 
+.bg-navbar {
+  background-color: #417690;
+}
+.bg-navbar-hover {
+  background-color: #5493b2;
+}
 @tailwind utilities;

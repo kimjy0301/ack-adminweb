@@ -37,7 +37,7 @@ const App = () => {
         <div className="w-full">
           <div
             id="nav"
-            className="flex justify-between fixed top-0 h-16 bg-teal-500 nav-bar border-b border-gray-100 w-full shadow-md px-10 "
+            className="flex justify-between fixed top-0 h-16 bg-navbar nav-bar border-b border-gray-100 w-full shadow-md px-10 "
           >
             <div className="ml-10">
               <Link

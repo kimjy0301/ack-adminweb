@@ -1,17 +1,20 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AllPc from "./equip/AllPc";
 import {
+  Link,
   useRouteMatch,
   Switch,
   Route,
   useLocation,
   useHistory,
 } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Floor from "./equip/Floor";
 import ScrollTop from "../../lib/ScrollTop";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../modules";
+import { setfloortimer } from "../../modules/user";
 import {
   getInterfacePcListAsync,
   InterfacePcState,
@@ -22,7 +25,9 @@ import GridPcList from "./equip/GridPcList";
 let urlList: string[] = [];
 
 const InterfacePcPage = () => {
-  let { path } = useRouteMatch();
+  let { path, url } = useRouteMatch();
+
+  const [folded, setFolded] = useState(true);
 
   const enableTimeout = useSelector(
     (state: RootState) => state.user.floorTimer
@@ -57,6 +62,10 @@ const InterfacePcPage = () => {
     });
   distinctList.map((value) => urlList.push(`/interfacepc/floor/${value}/`));
 
+  const onClickFolded = () => {
+    setFolded(!folded);
+  };
+
   const location = useLocation();
   const history = useHistory();
 
@@ -64,6 +73,11 @@ const InterfacePcPage = () => {
   if (pushPath === undefined) {
     pushPath = urlList[0];
   }
+
+  const onClickClearTimeout = () => {
+    dispatch(setfloortimer(!enableTimeout));
+  };
+
   useEffect(() => {
     let timer: any;
     timer = setInterval(() => {

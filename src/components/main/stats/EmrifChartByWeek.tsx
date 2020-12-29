@@ -66,18 +66,30 @@ function EmrifChartByWeek() {
         <div className="border-b w-full mx-auto mt-5 mb-2"></div>
         <div className="flex flex-col items-center justify-center">
           <span className="text-xl">지난주 대비</span>
-          <span
-            className={`${diff_send_count >= 0 ? "text-green-600" : "text-red-600"
+          <div>
+            <span className="text-lg mr-2">전송건수</span>
+            <span
+              className={`${
+                diff_send_count >= 0 ? "text-green-600" : "text-red-600"
               }`}
-          >
-            {diff_send_count >= 0 ? "+" + diff_send_count.toString() : "-" + diff_send_count.toString()}
-          </span>
-          <span
-            className={`${diff_error_count <= 0 ? "text-green-600" : "text-red-600"
+            >
+              {diff_send_count >= 0
+                ? "+" + diff_send_count.toString()
+                : diff_send_count.toString()}
+            </span>
+          </div>
+          <div>
+            <span className="text-lg mr-2">에러건수</span>
+            <span
+              className={`${
+                diff_error_count <= 0 ? "text-green-600" : "text-red-600"
               }`}
-          >
-            {diff_error_count >= 0 ? "+" + diff_error_count.toString() : "-" + diff_error_count.toString()}
-          </span>
+            >
+              {diff_error_count >= 0
+                ? "+" + diff_error_count.toString()
+                : diff_error_count.toString()}
+            </span>
+          </div>
         </div>
       </div>
     </>

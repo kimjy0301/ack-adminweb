@@ -29,24 +29,27 @@ const Main = () => {
           ref={divRef}
           className="opacity-0 transition-opacity duration-700 flex items-center justify-center py-5 h-full flex-col"
         >
-          <div className="flex w-80rem justify-between my-3">
+          <div className="flex w-full px-12 justify-between my-3">
             <ServerStatus></ServerStatus>
           </div>
-          <div className="flex w-80rem justify-between my-3">
+
+          <div className="border-b w-11/12 mx-auto mt-3"></div>
+
+          <div className="flex w-full px-12 justify-between my-3">
             <EmrifChartByDept></EmrifChartByDept>
             <EmrifChartByWeek></EmrifChartByWeek>
           </div>
-          <div className="flex w-80rem justify-around my-3">
+          <div className="flex w-full px-12 justify-around my-3">
             <EmrifChartByYear></EmrifChartByYear>
           </div>
         </div>
       ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-            }}
-          ></Redirect>
-        )}
+        <Redirect
+          to={{
+            pathname: "/login",
+          }}
+        ></Redirect>
+      )}
     </>
   );
 };

@@ -154,13 +154,14 @@ const GridPcList = () => {
     // eslint-disable-next-line no-restricted-globals
     if (confirm("에러를 일괄삭제하시려면 확인버튼을 눌러주세요")) {
       deleteAllInterfacePcError().then((response) => {
+        dispatch(getInterfacePcListAsync.request());
         dispatch(addError({ errorMsg: "삭제성공" }));
       });
     }
   };
   return (
     <>
-      <div className="flex flex-wrap border bg-white justify-center pb-10 pt-20 relative min-h-28 px-3">
+      <div className="flex flex-wrap border shadow-lg bg-white justify-center pb-10 pt-20 relative min-h-28 px-3">
         {isLoading ? (
           <div className="flex justify-center items-center h-screen">
             <BeatLoader
@@ -171,62 +172,62 @@ const GridPcList = () => {
             ></BeatLoader>
           </div>
         ) : (
-            <>
-              <div className="-mt-16 text-2xl absolute left-4rem bg-white border px-3 text-gray-700 rounded shadow-lg">
-                전체PC리스트
+          <>
+            <div className="-mt-16 text-2xl absolute left-4rem bg-white border px-3 text-gray-700 rounded shadow-lg">
+              전체PC리스트
             </div>
-              <input
-                type="text"
-                placeholder="IP,부서,검사실,전화번호"
-                className="-mt-16 w-64 text-xl absolute right-4rem bg-white border py-3 px-5 text-gray-700 rounded shadow-lg focus:border-teal-400 focus:outline-none"
-                value={deptInput}
-                onChange={onChangedeptInput}
-              ></input>
+            <input
+              type="text"
+              placeholder="IP,부서,검사실,전화번호"
+              className="-mt-16 w-64 text-xl absolute right-4rem bg-white border py-3 px-5 text-gray-700 rounded shadow-lg focus:border-teal-400 focus:outline-none"
+              value={deptInput}
+              onChange={onChangedeptInput}
+            ></input>
 
-              <div
-                className="ag-theme-balham bg-white text-base w-full pt-3"
-                style={{ height: "70vh" }}
+            <div
+              className="ag-theme-balham bg-white text-base w-full pt-3"
+              style={{ height: "70vh" }}
+            >
+              <AgGridReact
+                modules={data.modules}
+                columnDefs={data.columnDefs}
+                rowData={rowDatas}
+                rowClassRules={{
+                  "bg-error": function (params) {
+                    return params.data.status === "ERROR";
+                  },
+                }}
+                onGridReady={onGridReady}
+                rowSelection={data.rowSelection}
+                animateRows={false}
+                multiSortKey={"ctrl"}
+                onRowDoubleClicked={(e) => {
+                  let selectedRowData: rowData = e.data;
+                  let selectedInterfacePcState = interfacePcList.find(
+                    (value: InterfacePcState) => value.id === selectedRowData.id
+                  );
+                  setSelectedRowData(selectedInterfacePcState);
+                  setViewModal(true);
+                }}
+              ></AgGridReact>
+            </div>
+            <div className="flex w-full justify-end mt-3">
+              <button
+                onClick={onBtnRemoveError}
+                className="bg-navbar text-gray-100 shadow-md rounded px-3 py-1 focus:outline-none hover:bg-blue-600 transition duration-200"
               >
-                <AgGridReact
-                  modules={data.modules}
-                  columnDefs={data.columnDefs}
-                  rowData={rowDatas}
-                  rowClassRules={{
-                    "bg-error": function (params) {
-                      return params.data.status === "ERROR";
-                    },
-                  }}
-                  onGridReady={onGridReady}
-                  rowSelection={data.rowSelection}
-                  animateRows={false}
-                  multiSortKey={"ctrl"}
-                  onRowDoubleClicked={(e) => {
-                    let selectedRowData: rowData = e.data;
-                    let selectedInterfacePcState = interfacePcList.find(
-                      (value: InterfacePcState) => value.id === selectedRowData.id
-                    );
-                    setSelectedRowData(selectedInterfacePcState);
-                    setViewModal(true);
-                  }}
-                ></AgGridReact>
-              </div>
-              <div className="flex w-full justify-end mt-3">
-                <button
-                  onClick={onBtnRemoveError}
-                  className="bg-teal-500 text-gray-100 shadow-md rounded px-3 py-1 focus:outline-none hover:bg-teal-400 transition duration-200"
-                >
-                  에러일괄삭제
+                에러일괄삭제
               </button>
 
-                <button
-                  onClick={onBtnExport}
-                  className="bg-teal-500 text-gray-100 shadow-md rounded px-3 py-1 focus:outline-none hover:bg-teal-400 transition duration-200 ml-3"
-                >
-                  CSV Download
+              <button
+                onClick={onBtnExport}
+                className="bg-navbar text-gray-100 shadow-md rounded px-3 py-1 focus:outline-none hover:bg-blue-600 transition duration-200 ml-3"
+              >
+                CSV Download
               </button>
-              </div>
-            </>
-          )}
+            </div>
+          </>
+        )}
       </div>
 
       {viewModal && (

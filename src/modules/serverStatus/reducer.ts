@@ -17,6 +17,15 @@ const initialState: ServerStatusState = {
   total_memory: 0,
   used_disk: 0,
   used_memory: 0,
+  total_disk2: 0,
+  free_disk2: 0,
+  percent_disk2: 0,
+  used_disk2: 0,
+  total_memory2: 0,
+  free_memory2: 0,
+  percent_memory2: 0,
+  used_memory2: 0,
+  cpu2: 0,
   isLoading: true
 };
 
@@ -43,8 +52,18 @@ const serverStatusReducer = createReducer<
     total_disk: action.payload.total_disk,
     total_memory: action.payload.total_memory,
     used_disk: action.payload.used_disk,
-    used_memory: action.payload.used_memory
+    used_memory: action.payload.used_memory,
+    cpu2: action.payload.cpu2,
+    total_disk2: action.payload.total_disk2,
+    free_disk2: action.payload.free_disk2,
+    percent_disk2: action.payload.percent_disk2,
+    used_disk2: action.payload.used_disk2,
+    total_memory2: action.payload.total_memory2,
+    free_memory2: action.payload.free_memory2,
+    percent_memory2: action.payload.percent_memory2,
+    used_memory2: action.payload.used_memory2,
   })
 });
+
 
 export default serverStatusReducer;

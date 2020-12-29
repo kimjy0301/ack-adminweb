@@ -8,6 +8,11 @@ type MemoryType = {
   percent_memory: number;
   total_memory: number;
   used_memory: number;
+
+  free_memory2: number;
+  percent_memory2: number;
+  total_memory2: number;
+  used_memory2: number;
 };
 
 function Memory(props: MemoryType) {
@@ -21,21 +26,42 @@ function Memory(props: MemoryType) {
           <span className="text-xl font-medium text-gray-600 self-end">
             Memory 사용량
           </span>
-          <span className="text-lg font-medium text-gray-600 self-end">
-            {props.isLoading ? (
-              <BeatLoader
-                loading={props.isLoading}
-                color={"#38b2ac"}
-              ></BeatLoader>
-            ) : (
-              `${props.used_memory}/${props.total_memory}GB/${props.percent_memory}%`
-            )}
-          </span>
+
+          <div className="flex justify-between items-center">
+            <span className="text-md font-medium text-white rounded px-1 bg-green-400 block self-start mr-1">
+              IF1
+            </span>
+            <span className="text-md font-medium text-gray-600 block self-end">
+              {props.isLoading ? (
+                <BeatLoader
+                  loading={props.isLoading}
+                  color={"#38b2ac"}
+                ></BeatLoader>
+              ) : (
+                `${props.used_memory}/${props.total_memory}GB/${props.percent_memory}%`
+              )}
+            </span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-md font-medium text-white rounded px-1 bg-orange-400 block self-start mr-1">
+              IF2
+            </span>
+            <span className="text-md font-medium text-gray-600 block self-end">
+              {props.isLoading ? (
+                <BeatLoader
+                  loading={props.isLoading}
+                  color={"#38b2ac"}
+                ></BeatLoader>
+              ) : (
+                `${props.used_memory2}/${props.total_memory2}GB/${props.percent_memory2}%`
+              )}
+            </span>
+          </div>
         </div>
       </div>
       <div className="border-b w-5/6 mx-auto mb-3"></div>
       <div className="h-10 bg-white px-5">
-        {props.percent_memory >= 70 ? (
+        {props.percent_memory >= 70 || props.percent_memory2 >= 70 ? (
           <div>
             <FontAwesomeIcon
               icon="exclamation-circle"
@@ -46,7 +72,7 @@ function Memory(props: MemoryType) {
               Memory점유율 위험
             </span>
           </div>
-        ) : props.percent_memory >= 40 ? (
+        ) : props.percent_memory >= 40 || props.percent_memory2 >= 40 ? (
           <div>
             <FontAwesomeIcon
               icon="exclamation-circle"
@@ -58,7 +84,7 @@ function Memory(props: MemoryType) {
             </span>
           </div>
         ) : (
-          props.percent_memory <= 40 && (
+          (props.percent_memory <= 40 || props.percent_memory2 <= 40) && (
             <div>
               <span className="fa-layers fa-fw">
                 <FontAwesomeIcon icon="circle" color="green" size="1x" />

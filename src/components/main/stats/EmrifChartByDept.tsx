@@ -65,7 +65,7 @@ function EmrifChartByDept() {
           <div>
             <ReactDatePicker
               locale="ko"
-              className="text-2xl w-40 text-center focus:outline-none focus:border-teal-400 border shadow rounded"
+              className="text-xl w-40 text-center focus:outline-none focus:border-teal-400 border shadow rounded"
               selected={startDate}
               onChange={(date) => {
                 if (date) {
@@ -96,8 +96,8 @@ function EmrifChartByDept() {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="send_count" name="전송성공" fill="#68d391" />
-            <Bar dataKey="error_count" name="에러건수" fill="#fc8181" />
+            <Bar dataKey="send_count" name="전송성공" fill="#2c5282" />
+            <Bar dataKey="error_count" name="에러건수" fill="#9b2c2c" />
           </BarChart>
         </ResponsiveContainer>
       </div>

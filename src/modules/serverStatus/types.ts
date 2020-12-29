@@ -12,6 +12,15 @@ export type ServerStatusState = {
   percent_memory: number;
   used_memory: number;
   cpu: number;
+  total_disk2: number;
+  free_disk2: number;
+  percent_disk2: number;
+  used_disk2: number;
+  total_memory2: number;
+  free_memory2: number;
+  percent_memory2: number;
+  used_memory2: number;
+  cpu2: number;
   isLoading: boolean;
 };
 
